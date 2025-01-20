@@ -11,6 +11,7 @@ var rwd_speed = 60
 var moving = false
 var reversing = false
 var reversing_delay = false
+var respawning = false
 
 var cur_dir := Vector2.ZERO
 var nxt_dir := Vector2.ZERO
@@ -37,11 +38,11 @@ var input_to_dir = {
 
 
 func _ready():
+	
 	# Signals
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		if enemy.has_signal("kill"):  # Ensure the signal exists
-			
 			enemy.connect("kill", Callable(self, "_on_death"))
 	
 	position.snapped(Vector2(tile_size, tile_size))	
@@ -56,7 +57,6 @@ func _process(_delta):
 	if not moving:
 		move_head()
 	
-		#draw_segments()
 	
 
 func _input(event):
@@ -162,6 +162,7 @@ func draw_segments():
 			var segment = pipe_segments[segment_index]
 			var previous_segment = null
 			var next_segment = null
+			print("Drawing segments", pipe_segments)
 			
 			# Skips previous or next segments if out of range
 			if segment_index > 0:
@@ -215,3 +216,26 @@ func _on_ReversingTimer_timeout():
 
 func _on_death():
 	print("Player Killed")
+	respawning = true
+	
+	for segment in pipe_segments:
+		tilemap.erase_cell(segment)
+
+
+
+	# Reset player position
+	position = START_POS * tile_size
+
+	# Clear all drawn segments from the tilemap
+	#tilemap.clear()  # This removes all tiles. If you only want to clear specific ones, use erase_cell().
+
+	pipe_segments.clear()  # Clear all stored segments
+	# Reset movement state
+	cur_dir = Vector2.ZERO
+	nxt_dir = Vector2.ZERO
+	moving = false
+	reversing = false
+	reversing_delay = false
+
+	# Reset animation
+	set_head_dir(Vector2.DOWN)

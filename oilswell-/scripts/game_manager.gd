@@ -5,7 +5,6 @@ var level_instance : PackedScene
 
 # User Interface
 @onready var score_label: Label 
-@onready var player = $Player
 
 # Stats
 @export var current_level = "Level_1"
@@ -28,7 +27,6 @@ var monster_right_x = 830
 
 func _ready():
 	pass
-
 
 func unload_level():
 	if (is_instance_valid(level_instance)):

@@ -25,8 +25,7 @@ func _ready():
 	position = Vector2(GameManager.monster_right_x, GameManager.row_1_y)
 	spawn_timer.connect("timeout", Callable(self, "_on_SpawnTimer_timeout"))
 	spawn_timer.start()
-
-
+	
 
 func _process(delta):
 	if moving:
