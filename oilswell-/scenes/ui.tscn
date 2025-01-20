@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cap0drpkebucs"]
+
+[ext_resource type="Texture2D" uid="uid://df3ikjhfo4se4" path="res://assests/pipe/pipe_right.png" id="1_t0mad"]
+
+[node name="UI" type="Node2D"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 706.0
+offset_top = 62.0
+offset_right = 749.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.772549, 0.760784, 0.12549, 1)
+text = "Score"
+
+[node name="Timer" type="Label" parent="."]
+z_index = 1
+offset_left = 395.0
+offset_top = 156.0
+offset_right = 425.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.772549, 0.760784, 0.12549, 1)
+text = "990"
+
+[node name="Life1" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(37, 69)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_t0mad")
+
+[node name="Life2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(53, 69)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_t0mad")
+
+[node name="Life3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(69, 69)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_t0mad")

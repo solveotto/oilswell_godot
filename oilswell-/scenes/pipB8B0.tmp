@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn0xb818vhtsp"]
+
+[ext_resource type="Script" path="res://scripts/pipe.gd" id="1_n6jbp"]
+[ext_resource type="Texture2D" uid="uid://bm0m0jeum4jfc" path="res://assests/sprite_head.png" id="1_s0fcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqvmk"]
+size = Vector2(16, 14)
+
+[node name="Pipe" type="CharacterBody2D"]
+position = Vector2(73, 55)
+script = ExtResource("1_n6jbp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s0fcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mqvmk")

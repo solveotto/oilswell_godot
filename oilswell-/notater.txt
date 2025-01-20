@@ -1,0 +1,6 @@
+## Farge tiles etter at de har blitt plassert:
+	tilemap.set_cell(segment, SEGMENT_ID, Vector2(6,1))
+					
+	var tile_data = tilemap.get_cell_tile_data(segment)
+	if tile_data:
+		tile_data.set_modulate(Color.YELLOW)

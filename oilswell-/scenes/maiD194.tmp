@@ -1,0 +1,814 @@
+[gd_scene load_steps=13 format=4 uid="uid://ckt7ikqnp27io"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_5ycsb"]
+[ext_resource type="PackedScene" uid="uid://b5et68oflur8b" path="res://scenes/pipe.tscn" id="2_gkvor"]
+[ext_resource type="Texture2D" uid="uid://b42f4fymt58m0" path="res://assests/oilswell_backgrounds_spritesheet.png" id="3_ntask"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="4_apts1"]
+[ext_resource type="PackedScene" uid="uid://c1eqf5quseroj" path="res://scenes/oil.tscn" id="4_yoshw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bb3w5"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m7t7m"]
+normal = Vector2(1, 0)
+distance = 16.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y8eg5"]
+normal = Vector2(-1, 0)
+distance = 8.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c285r"]
+texture = ExtResource("3_ntask")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tjwon"]
+sources/0 = SubResource("TileSetAtlasSource_c285r")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mqup5"]
+texture = ExtResource("4_apts1")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:0/0 = 0
+10:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 1.5)
+3:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+5:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0 = 0
+6:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+9:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:1/0 = 0
+10:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+8:6/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:6/0 = 0
+9:6/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:6/0 = 0
+10:6/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:7/0 = 0
+0:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0 = 0
+1:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:7/0 = 0
+2:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:7/0 = 0
+3:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:7/0 = 0
+4:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:7/0 = 0
+5:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:7/0 = 0
+6:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:7/0 = 0
+7:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:7/0 = 0
+8:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:7/0 = 0
+10:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dk7my"]
+physics_layer_0/collision_layer = 2
+physics_layer_1/collision_layer = 32
+physics_layer_1/collision_mask = 16
+physics_layer_2/collision_layer = 16
+sources/8 = SubResource("TileSetAtlasSource_mqup5")
+tile_proxies/coords_level = [[10, Vector2i(0, 0)], [13, Vector2i(0, 0)], [11, Vector2i(0, 0)], [13, Vector2i(1, 0)], [12, Vector2i(0, 0)], [13, Vector2i(2, 0)]]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_5ycsb")
+
+[node name="Levels" type="Node" parent="."]
+
+[node name="Lvl1" type="Node" parent="Levels"]
+
+[node name="Oil" type="Node" parent="Levels/Lvl1"]
+
+[node name="Oil1" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(40, 216)
+
+[node name="Oil2" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(104, 216)
+
+[node name="Oil3" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(168, 216)
+
+[node name="Oil4" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(232, 216)
+
+[node name="Oil5" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(296, 216)
+
+[node name="Oil6" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(360, 216)
+
+[node name="Oil7" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(456, 216)
+
+[node name="Oil8" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(520, 216)
+
+[node name="Oil9" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(584, 216)
+
+[node name="Oil10" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(648, 216)
+
+[node name="Oil11" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(712, 216)
+
+[node name="Oil12" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(776, 216)
+
+[node name="Oil13" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(8, 264)
+
+[node name="Oil14" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(120, 264)
+
+[node name="Oil15" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(232, 264)
+
+[node name="Oil16" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(360, 264)
+
+[node name="Oil17" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(472, 264)
+
+[node name="Oil18" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 264)
+
+[node name="Oil19" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(728, 264)
+
+[node name="Oil20" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(8, 312)
+
+[node name="Oil21" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(56, 312)
+
+[node name="Oil22" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(72, 312)
+
+[node name="Oil23" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(120, 312)
+
+[node name="Oil24" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(136, 312)
+
+[node name="Oil25" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(184, 312)
+
+[node name="Oil26" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 312)
+
+[node name="Oil27" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(248, 312)
+
+[node name="Oil28" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(264, 312)
+
+[node name="Oil29" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(312, 312)
+
+[node name="Oil30" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(328, 312)
+
+[node name="Oil31" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(376, 312)
+
+[node name="Oil32" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(392, 312)
+
+[node name="Oil33" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(440, 312)
+
+[node name="Oil34" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(456, 312)
+
+[node name="Oil35" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(504, 312)
+
+[node name="Oil36" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(520, 312)
+
+[node name="Oil37" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(568, 312)
+
+[node name="Oil38" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(584, 312)
+
+[node name="Oil39" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(632, 312)
+
+[node name="Oil40" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(648, 312)
+
+[node name="Oil41" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(696, 312)
+
+[node name="Oil42" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(712, 312)
+
+[node name="Oil43" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(760, 312)
+
+[node name="Oil44" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(776, 312)
+
+[node name="Oil45" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(24, 360)
+
+[node name="Oil46" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(40, 360)
+
+[node name="Oil47" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(56, 360)
+
+[node name="Oil48" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(72, 360)
+
+[node name="Oil49" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(88, 360)
+
+[node name="Oil50" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(104, 360)
+
+[node name="Oil51" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(120, 360)
+
+[node name="Oil52" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(136, 360)
+
+[node name="Oil53" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(152, 360)
+
+[node name="Oil54" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(168, 360)
+
+[node name="Oil55" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(184, 360)
+
+[node name="Oil56" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 360)
+
+[node name="Oil57" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(216, 360)
+
+[node name="Oil58" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(232, 360)
+
+[node name="Oil59" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(248, 360)
+
+[node name="Oil60" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(264, 360)
+
+[node name="Oil61" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(280, 360)
+
+[node name="Oil62" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(296, 360)
+
+[node name="Oil63" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(312, 360)
+
+[node name="Oil64" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(328, 360)
+
+[node name="Oil65" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(344, 360)
+
+[node name="Oil66" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(360, 360)
+
+[node name="Oil67" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(376, 360)
+
+[node name="Oil68" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(392, 360)
+
+[node name="Oil69" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(408, 360)
+
+[node name="Oil70" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(424, 360)
+
+[node name="Oil71" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(440, 360)
+
+[node name="Oil72" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(456, 360)
+
+[node name="Oil73" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(472, 360)
+
+[node name="Oil74" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(488, 360)
+
+[node name="Oil75" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(504, 360)
+
+[node name="Oil76" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(520, 360)
+
+[node name="Oil77" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(536, 360)
+
+[node name="Oil78" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(552, 360)
+
+[node name="Oil79" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(568, 360)
+
+[node name="Oil80" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(584, 360)
+
+[node name="Oil81" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 360)
+
+[node name="Oil82" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(616, 360)
+
+[node name="Oil83" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(632, 360)
+
+[node name="Oil84" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(648, 360)
+
+[node name="Oil85" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(664, 360)
+
+[node name="Oil86" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(680, 360)
+
+[node name="Oil87" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(696, 360)
+
+[node name="Oil88" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(712, 360)
+
+[node name="Oil89" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(728, 360)
+
+[node name="Oil90" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(744, 360)
+
+[node name="Oil91" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(760, 360)
+
+[node name="Oil92" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(776, 360)
+
+[node name="Oil93" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(792, 360)
+
+[node name="Oil96" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(56, 408)
+
+[node name="Oil97" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(72, 408)
+
+[node name="Oil98" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(88, 408)
+
+[node name="Oil99" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(104, 408)
+
+[node name="Oil100" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(120, 408)
+
+[node name="Oil101" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(136, 408)
+
+[node name="Oil102" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(152, 408)
+
+[node name="Oil103" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(168, 408)
+
+[node name="Oil104" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(184, 408)
+
+[node name="Oil105" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 408)
+
+[node name="Oil106" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(216, 408)
+
+[node name="Oil107" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(232, 408)
+
+[node name="Oil108" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(248, 408)
+
+[node name="Oil109" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(264, 408)
+
+[node name="Oil110" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(280, 408)
+
+[node name="Oil111" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(296, 408)
+
+[node name="Oil112" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(312, 408)
+
+[node name="Oil113" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(328, 408)
+
+[node name="Oil114" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(344, 408)
+
+[node name="Oil115" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(360, 408)
+
+[node name="Oil116" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(376, 408)
+
+[node name="Oil117" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(392, 408)
+
+[node name="Oil118" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(408, 408)
+
+[node name="Oil119" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(424, 408)
+
+[node name="Oil120" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(440, 408)
+
+[node name="Oil121" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(456, 408)
+
+[node name="Oil122" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(472, 408)
+
+[node name="Oil123" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(488, 408)
+
+[node name="Oil124" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(504, 408)
+
+[node name="Oil125" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(520, 408)
+
+[node name="Oil126" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(536, 408)
+
+[node name="Oil127" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(552, 408)
+
+[node name="Oil128" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(568, 408)
+
+[node name="Oil129" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(584, 408)
+
+[node name="Oil130" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 408)
+
+[node name="Oil131" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(616, 408)
+
+[node name="Oil132" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(632, 408)
+
+[node name="Oil133" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(648, 408)
+
+[node name="Oil134" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(664, 408)
+
+[node name="Oil135" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(680, 408)
+
+[node name="Oil136" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(696, 408)
+
+[node name="Oil137" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(712, 408)
+
+[node name="Oil138" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(728, 408)
+
+[node name="Oil139" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(744, 408)
+
+[node name="Oil140" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(760, 408)
+
+[node name="Oil141" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(776, 408)
+
+[node name="Oil142" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(792, 408)
+
+[node name="Oil143" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 424)
+
+[node name="Oil144" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 440)
+
+[node name="Oil94" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(24, 408)
+
+[node name="Oil95" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(40, 408)
+
+[node name="Oil145" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(56, 456)
+
+[node name="Oil146" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(72, 456)
+
+[node name="Oil147" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(88, 456)
+
+[node name="Oil148" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(104, 456)
+
+[node name="Oil149" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(120, 456)
+
+[node name="Oil150" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(136, 456)
+
+[node name="Oil151" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(152, 456)
+
+[node name="Oil152" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(168, 456)
+
+[node name="Oil153" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(184, 456)
+
+[node name="Oil154" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(200, 456)
+
+[node name="Oil155" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(216, 456)
+
+[node name="Oil156" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(232, 456)
+
+[node name="Oil157" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(248, 456)
+
+[node name="Oil158" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(264, 456)
+
+[node name="Oil159" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(280, 456)
+
+[node name="Oil160" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(296, 456)
+
+[node name="Oil161" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(312, 456)
+
+[node name="Oil162" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(328, 456)
+
+[node name="Oil163" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(344, 456)
+
+[node name="Oil164" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(360, 456)
+
+[node name="Oil165" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(376, 456)
+
+[node name="Oil166" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(392, 456)
+
+[node name="Oil167" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(408, 456)
+
+[node name="Oil168" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(424, 456)
+
+[node name="Oil169" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(440, 456)
+
+[node name="Oil170" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(456, 456)
+
+[node name="Oil171" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(472, 456)
+
+[node name="Oil172" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(488, 456)
+
+[node name="Oil173" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(504, 456)
+
+[node name="Oil174" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(520, 456)
+
+[node name="Oil175" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(536, 456)
+
+[node name="Oil176" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(552, 456)
+
+[node name="Oil177" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(568, 456)
+
+[node name="Oil178" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(584, 456)
+
+[node name="Oil179" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 456)
+
+[node name="Oil180" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(616, 456)
+
+[node name="Oil181" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(632, 456)
+
+[node name="Oil182" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(648, 456)
+
+[node name="Oil183" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(664, 456)
+
+[node name="Oil184" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(680, 456)
+
+[node name="Oil185" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(696, 456)
+
+[node name="Oil186" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(712, 456)
+
+[node name="Oil187" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(728, 456)
+
+[node name="Oil188" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(744, 456)
+
+[node name="Oil189" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(760, 456)
+
+[node name="Oil190" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(776, 456)
+
+[node name="Oil191" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(792, 456)
+
+[node name="Oil194" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 424)
+
+[node name="Oil195" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(600, 440)
+
+[node name="Oil192" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(24, 456)
+
+[node name="Oil193" parent="Levels/Lvl1/Oil" instance=ExtResource("4_yoshw")]
+position = Vector2(40, 456)
+
+[node name="Map boundries" type="StaticBody2D" parent="Levels/Lvl1"]
+collision_layer = 8
+
+[node name="map_top" type="CollisionShape2D" parent="Levels/Lvl1/Map boundries"]
+position = Vector2(400, 192)
+shape = SubResource("WorldBoundaryShape2D_bb3w5")
+
+[node name="map_left" type="CollisionShape2D" parent="Levels/Lvl1/Map boundries"]
+position = Vector2(-16, 336)
+shape = SubResource("WorldBoundaryShape2D_m7t7m")
+
+[node name="map_right" type="CollisionShape2D" parent="Levels/Lvl1/Map boundries"]
+position = Vector2(824, 321)
+shape = SubResource("WorldBoundaryShape2D_y8eg5")
+
+[node name="Tilemaps" type="Node" parent="."]
+
+[node name="Level1" type="Node" parent="Tilemaps"]
+
+[node name="backgorund" type="TileMapLayer" parent="Tilemaps/Level1"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAAAAAAAAAAAAAARAAEAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAsAAAAAAAAAAAASAAAAAAAAAAAAAAASAAEAAAAAAAAAAAASAAIAAAAAAAAAAAASAAMAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAASAAsAAAAAAAAAAAATAAAAAAAAAAAAAAATAAEAAAAAAAAAAAATAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAAAAAAAAAAAAAAUAAEAAAAAAAAAAAAUAAIAAAAAAAAAAAAUAAMAAAAAAAAAAAAUAAQAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAYAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAgAAAAAAAAAAAAUAAkAAAAAAAAAAAAUAAoAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAAAAAAAAAAAAAAVAAEAAAAAAAAAAAAVAAIAAAAAAAAAAAAVAAMAAAAAAAAAAAAVAAQAAAAAAAAAAAAVAAUAAAAAAAAAAAAVAAYAAAAAAAAAAAAVAAcAAAAAAAAAAAAVAAgAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAoAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAAAAAAAAAAAAAAWAAEAAAAAAAAAAAAWAAIAAAAAAAAAAAAWAAMAAAAAAAAAAAAWAAQAAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAWAAcAAAAAAAAAAAAWAAgAAAAAAAAAAAAWAAkAAAAAAAAAAAAWAAoAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAAAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAAAAAAAAAAAAAAZAAEAAAAAAAAAAAAZAAIAAAAAAAAAAAAZAAMAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAYAAAAAAAAAAAAZAAcAAAAAAAAAAAAZAAgAAAAAAAAAAAAZAAkAAAAAAAAAAAAZAAoAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAAAAAAAAAAAAAAaAAEAAAAAAAAAAAAaAAIAAAAAAAAAAAAaAAMAAAAAAAAAAAAaAAQAAAAAAAAAAAAaAAUAAAAAAAAAAAAaAAYAAAAAAAAAAAAaAAcAAAAAAAAAAAAaAAgAAAAAAAAAAAAaAAkAAAAAAAAAAAAaAAoAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAAAAAAAAAAAAAAbAAEAAAAAAAAAAAAbAAIAAAAAAAAAAAAbAAMAAAAAAAAAAAAbAAQAAAAAAAAAAAAbAAUAAAAAAAAAAAAbAAYAAAAAAAAAAAAbAAcAAAAAAAAAAAAbAAgAAAAAAAAAAAAbAAkAAAAAAAAAAAAbAAoAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAAAAAAAAAAAAAAcAAEAAAAAAAAAAAAcAAIAAAAAAAAAAAAcAAMAAAAAAAAAAAAcAAQAAAAAAAAAAAAcAAUAAAAAAAAAAAAcAAYAAAAAAAAAAAAcAAcAAAAAAAAAAAAcAAgAAAAAAAAAAAAcAAkAAAAAAAAAAAAcAAoAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAAAAAAAAAAAAAAdAAEAAAAAAAAAAAAdAAIAAAAAAAAAAAAdAAMAAAAAAAAAAAAdAAQAAAAAAAAAAAAdAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAdAAcAAAAAAAAAAAAdAAgAAAAAAAAAAAAdAAkAAAAAAAAAAAAdAAoAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAAAAAAAAAAAAAAeAAEAAAAAAAAAAAAeAAIAAAAAAAAAAAAeAAMAAAAAAAAAAAAeAAQAAAAAAAAAAAAeAAUAAAAAAAAAAAAeAAYAAAAAAAAAAAAeAAcAAAAAAAAAAAAeAAgAAAAAAAAAAAAeAAkAAAAAAAAAAAAeAAoAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAAAAAAAAAAAAAAfAAEAAAAAAAAAAAAfAAIAAAAAAAAAAAAfAAMAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAYAAAAAAAAAAAAfAAcAAAAAAAAAAAAfAAgAAAAAAAAAAAAfAAkAAAAAAAAAAAAfAAoAAAAAAAAAAAAfAAsAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAEAAAAAAAAAAAAgAAIAAAAAAAAAAAAgAAMAAAAAAAAAAAAgAAQAAAAAAAAAAAAgAAUAAAAAAAAAAAAgAAYAAAAAAAAAAAAgAAcAAAAAAAAAAAAgAAgAAAAAAAAAAAAgAAkAAAAAAAAAAAAgAAoAAAAAAAAAAAAgAAsAAAAAAAAAAAAhAAAAAAAAAAAAAAAhAAEAAAAAAAAAAAAhAAIAAAAAAAAAAAAhAAMAAAAAAAAAAAAhAAQAAAAAAAAAAAAhAAUAAAAAAAAAAAAhAAYAAAAAAAAAAAAhAAcAAAAAAAAAAAAhAAgAAAAAAAAAAAAhAAkAAAAAAAAAAAAhAAoAAAAAAAAAAAAhAAsAAAAAAAAAAAAiAAAAAAAAAAAAAAAiAAEAAAAAAAAAAAAiAAIAAAAAAAAAAAAiAAMAAAAAAAAAAAAiAAQAAAAAAAAAAAAiAAUAAAAAAAAAAAAiAAYAAAAAAAAAAAAiAAcAAAAAAAAAAAAiAAgAAAAAAAAAAAAiAAkAAAAAAAAAAAAiAAoAAAAAAAAAAAAiAAsAAAAAAAAAAAAjAAAAAAAAAAAAAAAjAAEAAAAAAAAAAAAjAAIAAAAAAAAAAAAjAAMAAAAAAAAAAAAjAAQAAAAAAAAAAAAjAAUAAAAAAAAAAAAjAAYAAAAAAAAAAAAjAAcAAAAAAAAAAAAjAAgAAAAAAAAAAAAjAAkAAAAAAAAAAAAjAAoAAAAAAAAAAAAjAAsAAAAAAAAAAAAkAAAAAAAAAAAAAAAkAAEAAAAAAAAAAAAkAAIAAAAAAAAAAAAkAAMAAAAAAAAAAAAkAAQAAAAAAAAAAAAkAAUAAAAAAAAAAAAkAAYAAAAAAAAAAAAkAAcAAAAAAAAAAAAkAAgAAAAAAAAAAAAkAAkAAAAAAAAAAAAkAAoAAAAAAAAAAAAkAAsAAAAAAAAAAAAlAAAAAAAAAAAAAAAlAAEAAAAAAAAAAAAlAAIAAAAAAAAAAAAlAAMAAAAAAAAAAAAlAAQAAAAAAAAAAAAlAAUAAAAAAAAAAAAlAAYAAAAAAAAAAAAlAAcAAAAAAAAAAAAlAAgAAAAAAAAAAAAlAAkAAAAAAAAAAAAlAAoAAAAAAAAAAAAlAAsAAAAAAAAAAAAmAAAAAAAAAAAAAAAmAAEAAAAAAAAAAAAmAAIAAAAAAAAAAAAmAAMAAAAAAAAAAAAmAAQAAAAAAAAAAAAmAAUAAAAAAAAAAAAmAAYAAAAAAAAAAAAmAAcAAAAAAAAAAAAmAAgAAAAAAAAAAAAmAAkAAAAAAAAAAAAmAAoAAAAAAAAAAAAmAAsAAAAAAAAAAAAnAAAAAAAAAAAAAAAnAAEAAAAAAAAAAAAnAAIAAAAAAAAAAAAnAAMAAAAAAAAAAAAnAAQAAAAAAAAAAAAnAAUAAAAAAAAAAAAnAAYAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAgAAAAAAAAAAAAnAAkAAAAAAAAAAAAnAAoAAAAAAAAAAAAnAAsAAAAAAAAAAAAoAAAAAAAAAAAAAAAoAAEAAAAAAAAAAAAoAAIAAAAAAAAAAAAoAAMAAAAAAAAAAAAoAAQAAAAAAAAAAAAoAAUAAAAAAAAAAAAoAAYAAAAAAAAAAAAoAAcAAAAAAAAAAAAoAAgAAAAAAAAAAAAoAAkAAAAAAAAAAAAoAAoAAAAAAAAAAAAoAAsAAAAAAAAAAAApAAAAAAAAAAAAAAApAAEAAAAAAAAAAAApAAIAAAAAAAAAAAApAAMAAAAAAAAAAAApAAQAAAAAAAAAAAApAAUAAAAAAAAAAAApAAYAAAAAAAAAAAApAAcAAAAAAAAAAAApAAgAAAAAAAAAAAApAAkAAAAAAAAAAAApAAoAAAAAAAAAAAApAAsAAAAAAAAAAAAqAAAAAAAAAAAAAAAqAAEAAAAAAAAAAAAqAAIAAAAAAAAAAAAqAAMAAAAAAAAAAAAqAAQAAAAAAAAAAAAqAAUAAAAAAAAAAAAqAAYAAAAAAAAAAAAqAAcAAAAAAAAAAAAqAAgAAAAAAAAAAAAqAAkAAAAAAAAAAAAqAAoAAAAAAAAAAAAqAAsAAAAAAAAAAAArAAAAAAAAAAAAAAArAAEAAAAAAAAAAAArAAIAAAAAAAAAAAArAAMAAAAAAAAAAAArAAQAAAAAAAAAAAArAAUAAAAAAAAAAAArAAYAAAAAAAAAAAArAAcAAAAAAAAAAAArAAgAAAAAAAAAAAArAAkAAAAAAAAAAAArAAoAAAAAAAAAAAArAAsAAAAAAAAAAAAsAAAAAAAAAAAAAAAsAAEAAAAAAAAAAAAsAAIAAAAAAAAAAAAsAAMAAAAAAAAAAAAsAAQAAAAAAAAAAAAsAAUAAAAAAAAAAAAsAAYAAAAAAAAAAAAsAAcAAAAAAAAAAAAsAAgAAAAAAAAAAAAsAAkAAAAAAAAAAAAsAAoAAAAAAAAAAAAsAAsAAAAAAAAAAAAtAAAAAAAAAAAAAAAtAAEAAAAAAAAAAAAtAAIAAAAAAAAAAAAtAAMAAAAAAAAAAAAtAAQAAAAAAAAAAAAtAAUAAAAAAAAAAAAtAAYAAAAAAAAAAAAtAAcAAAAAAAAAAAAtAAgAAAAAAAAAAAAtAAkAAAAAAAAAAAAtAAoAAAAAAAAAAAAtAAsAAAAAAAAAAAAuAAAAAAAAAAAAAAAuAAEAAAAAAAAAAAAuAAIAAAAAAAAAAAAuAAMAAAAAAAAAAAAuAAQAAAAAAAAAAAAuAAUAAAAAAAAAAAAuAAYAAAAAAAAAAAAuAAcAAAAAAAAAAAAuAAgAAAAAAAAAAAAuAAkAAAAAAAAAAAAuAAoAAAAAAAAAAAAuAAsAAAAAAAAAAAAvAAAAAAAAAAAAAAAvAAEAAAAAAAAAAAAvAAIAAAAAAAAAAAAvAAMAAAAAAAAAAAAvAAQAAAAAAAAAAAAvAAUAAAAAAAAAAAAvAAYAAAAAAAAAAAAvAAcAAAAAAAAAAAAvAAgAAAAAAAAAAAAvAAkAAAAAAAAAAAAvAAoAAAAAAAAAAAAvAAsAAAAAAAAAAAAwAAAAAAAAAAAAAAAwAAEAAAAAAAAAAAAwAAIAAAAAAAAAAAAwAAMAAAAAAAAAAAAwAAQAAAAAAAAAAAAwAAUAAAAAAAAAAAAwAAYAAAAAAAAAAAAwAAcAAAAAAAAAAAAwAAgAAAAAAAAAAAAwAAkAAAAAAAAAAAAwAAoAAAAAAAAAAAAwAAsAAAAAAAAAAAAxAAAAAAAAAAAAAAAxAAEAAAAAAAAAAAAxAAIAAAAAAAAAAAAxAAMAAAAAAAAAAAAxAAQAAAAAAAAAAAAxAAUAAAAAAAAAAAAxAAYAAAAAAAAAAAAxAAcAAAAAAAAAAAAxAAgAAAAAAAAAAAAxAAkAAAAAAAAAAAAxAAoAAAAAAAAAAAAxAAsAAAAAAAAAAAAyAAAAAAAAAAAAAAAyAAEAAAAAAAAAAAAyAAIAAAAAAAAAAAAyAAMAAAAAAAAAAAAyAAQAAAAAAAAAAAAyAAUAAAAAAAAAAAAyAAYAAAAAAAAAAAAyAAcAAAAAAAAAAAAyAAgAAAAAAAAAAAAyAAkAAAAAAAAAAAAyAAoAAAAAAAAAAAAyAAsAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_tjwon")
+
+[node name="TileMap" type="TileMapLayer" parent="Tilemaps"]
+clip_children = 2
+z_as_relative = false
+tile_map_data = PackedByteArray("AAAAAA4ACAACAAAAACAAABEACAACAAAAACAAABQACAACAAAAACAAABcACAACAAAAACAAABoACAACAAAAACAAAB0ACAACAAAAACABAA4ACAACAAAAACABABEACAACAAAAACABABQACAACAAAAACABABcACAACAAAAACABABoACAACAAAAACABAB0ACAACAAAAACACAA4ACAABAAAAACACABEACAABAAAAACACABQACAACAAAAACACABcACAABAAAAACACABoACAABAAAAACACAB0ACAACAAAAACADAA4ACAACAAAAACADABEACAACAAAAACADABQACAACAAAAACADABcACAACAAAAACADABoACAACAAAAACADAB0ACAACAAAAACAEAA4ACAACAAAAACAEABEACAACAAAAACAEABQACAABAAAAACAEABcACAACAAAAACAEABoACAACAAAAACAEAB0ACAABAAAAACAFAA4ACAAAAAAAAAAFABEACAAAAAAAAAAFABQACAACAAAAACAFABcACAAAAAAAAAAFABoACAACAAAAACAFAB0ACAACAAAAACAGAA4ACAABAAAAACAGABEACAABAAAAACAGABQACAACAAAAACAGABcACAABAAAAACAGABoACAACAAAAACAGAB0ACAACAAAAACAHAA4ACAAAAAAAAAAHABQACAACAAAAACAHABoACAABAAAAACAHAB0ACAAAAAAAAAAIAA4ACAABAAAAACAIABEACAACAAAAACAIABQACAACAAAAACAIABcACAACAAAAACAIABoACAACAAAAACAIAB0ACAABAAAAACAJAA4ACAACAAAAACAJABEACAACAAAAACAJABQACAABAAAAACAJABcACAABAAAAACAJABoACAACAAAAACAJAB0ACAAAAAAAAAAKAA4ACAACAAAAACAKABEACAABAAAAACAKABQACAACAAAAACAKABcACAACAAAAACAKABoACAAAAAAAAAAKAB0ACAABAAAAACALAA4ACAABAAAAACALABEACAACAAAAACALABQACAACAAAAACALABcACAACAAAAACALABoACAABAAAAACALAB0ACAABAAAAACAMABEACAACAAAAACAMABQACAAAAAAAAAAMABcACAAAAAAAAAAMAB0ACAACAAAAACANAA4ACAACAAAAACANABEACAAAAAAAAAANABQACAABAAAAACANABcACAABAAAAACANABoACAACAAAAACANAB0ACAACAAAAACAOABEACAACAAAAACAOABcACAAAAAAAAAAOABoACAACAAAAACAOAB0ACAACAAAAACAPAA4ACAABAAAAACAPABEACAACAAAAACAPABQACAACAAAAACAPABcACAABAAAAACAPABoACAABAAAAACAPAB0ACAABAAAAACAQAA4ACAAAAAAAAAAQABEACAABAAAAACAQABQACAACAAAAACAQABcACAABAAAAACAQABoACAACAAAAACAQAB0ACAACAAAAACARAA4ACAABAAAAACARABEACAACAAAAACARABQACAABAAAAACARABcACAACAAAAACARABoACAACAAAAACARAB0ACAACAAAAACASAA4ACAABAAAAACASABEACAACAAAAACASABQACAACAAAAACASABcACAACAAAAACASABoACAAAAAAAAAASAB0ACAAAAAAAAAATABEACAAAAAAAAAATABQACAACAAAAACATABcACAABAAAAACATABoACAABAAAAACATAB0ACAABAAAAACAUAA4ACAABAAAAADAUABEACAABAAAAACAUABQACAAAAAAAAAAUABcACAACAAAAACAUABoACAACAAAAACAUAB0ACAAAAAAAAAAVAA4ACAABAAAAADAVABEACAAAAAAAAAAVABQACAABAAAAACAVABcACAACAAAAACAVABoACAACAAAAACAVAB0ACAABAAAAACAWAA4ACAABAAAAADAWABEACAABAAAAACAWABQACAACAAAAACAWABcACAAAAAAAAAAWABoACAABAAAAACAWAB0ACAABAAAAACAXAA4ACAADAAAAAFAXABEACAABAAAAACAXABQACAACAAAAACAXABcACAABAAAAACAXABoACAACAAAAACAXAB0ACAACAAAAACAYAA4ACAABAAAAADAYABQACAACAAAAACAYABcACAAAAAAAAAAYABoACAACAAAAACAYAB0ACAACAAAAACAZAA4ACAADAAAAADAZABEACAACAAAAACAZABQACAACAAAAACAZABcACAABAAAAACAZABoACAAAAAAAAAAZAB0ACAACAAAAACAaAA4ACAACAAAAADAaABEACAACAAAAACAaABQACAACAAAAACAaABcACAABAAAAACAaABoACAACAAAAACAaAB0ACAACAAAAACAbAA4ACAACAAAAADAbABQACAABAAAAACAbABcACAACAAAAACAbABoACAACAAAAACAbAB0ACAABAAAAACAcAA4ACAACAAAAADAcABEACAACAAAAACAcABQACAACAAAAACAcABcACAACAAAAACAcABoACAABAAAAACAcAB0ACAACAAAAACAdAA4ACAABAAAAAGAdABEACAACAAAAACAdABQACAACAAAAACAdABcACAABAAAAACAdABoACAACAAAAACAdAB0ACAACAAAAACAeABEACAACAAAAACAeABQACAAAAAAAAAAeABcACAACAAAAACAeABoACAACAAAAACAeAB0ACAAAAAAAAAAfAA4ACAACAAAAACAfABEACAACAAAAACAfABQACAABAAAAACAfABcACAACAAAAACAfABoACAACAAAAACAfAB0ACAABAAAAACAgAA4ACAACAAAAACAgABEACAACAAAAACAgABQACAAAAAAAAAAgABcACAACAAAAACAgABoACAABAAAAACAgAB0ACAAAAAAAAAAhAA4ACAABAAAAACAhABEACAABAAAAACAhABQACAABAAAAACAhABcACAACAAAAACAhABoACAACAAAAACAhAB0ACAABAAAAACAiAA4ACAACAAAAACAiABEACAACAAAAACAiABQACAABAAAAACAiABcACAABAAAAACAiABoACAACAAAAACAiAB0ACAABAAAAACAjAA4ACAACAAAAACAjABEACAACAAAAACAjABcACAACAAAAACAjABoACAAAAAAAAAAjAB0ACAACAAAAACAkABEACAAAAAAAAAAkABQACAACAAAAACAkABcACAACAAAAACAkABoACAABAAAAACAkAB0ACAACAAAAACAlAA4ACAABAAAAACAlABEACAABAAAAACAlABQACAACAAAAACAlABcACAAAAAAAAAAlAB0ACAACAAAAACAmAA4ACAAAAAAAAAAmABEACAAAAAAAAAAmABQACAABAAAAACAmABcACAABAAAAACAmAB0ACAACAAAAACAnAA4ACAABAAAAACAnABEACAABAAAAACAnABQACAACAAAAACAnABcACAAAAAAAAAAnABoACAACAAAAACAnAB0ACAACAAAAACAoAA4ACAACAAAAACAoABEACAABAAAAACAoABQACAACAAAAACAoABcACAABAAAAACAoABoACAABAAAAACAoAB0ACAACAAAAACApAA4ACAACAAAAACApABQACAAAAAAAAAApABcACAABAAAAACApABoACAACAAAAACApAB0ACAACAAAAACAqAA4ACAABAAAAACAqABEACAACAAAAACAqABQACAABAAAAACAqABcACAACAAAAABAqABoACAACAAAAACAqAB0ACAABAAAAACArAA4ACAACAAAAACArABEACAACAAAAACArABQACAACAAAAACArABoACAAAAAAAAAArAB0ACAACAAAAACAsAA4ACAACAAAAACAsABEACAACAAAAACAsABQACAAAAAAAAAAsABcACAADAAAAAFAsABoACAABAAAAACAsAB0ACAACAAAAACAtAA4ACAAAAAAAAAAtABEACAABAAAAACAtABQACAABAAAAACAtABcACAADAAAAAFAtABoACAAAAAAAAAAtAB0ACAAAAAAAAAAuAA4ACAABAAAAACAuABEACAACAAAAACAuABQACAACAAAAACAuABcACAADAAAAADAuABoACAABAAAAACAuAB0ACAABAAAAACAvAA4ACAAAAAAAAAAvABEACAACAAAAACAvABQACAACAAAAACAvABcACAADAAAAADAvABoACAACAAAAACAvAB0ACAAAAAAAAAAwAA4ACAABAAAAACAwABEACAAAAAAAAAAwABQACAAAAAAAAAAwABcACAADAAAAADAwABoACAAAAAAAAAAwAB0ACAABAAAAACAxAA4ACAABAAAAACAxABEACAABAAAAACAxABQACAABAAAAACAxABcACAADAAAAAFAxABoACAABAAAAACAxAB0ACAABAAAAACAAAAwACAAAAAAAAAAAAA8ACAABAAAAABAAABIACAABAAAAABAAABUACAABAAAAABAAABgACAABAAAAABAAABsACAABAAAAABAAAB4ACAAEAAAAAFABAAwACAAAAAAAAAABAA8ACAABAAAAABABABIACAAAAAAAADABABUACAABAAAAABABABsACAABAAAAABABAB4ACAAEAAAAADACAAwACAABAAAAAAACAA8ACAAAAAAAADACABIACAACAAAAABACABUACAABAAAAABACABgACAAAAAAAADACABsACAAAAAAAADACAB4ACAAEAAAAADADAAwACAACAAAAAAADAA8ACAABAAAAABADABIACAACAAAAABADABUACAABAAAAABADABgACAABAAAAABADABsACAABAAAAABADAB4ACAAEAAAAADAEAAwACAABAAAAAAAEAA8ACAAAAAAAADAEABIACAABAAAAABAEABUACAAAAAAAADAEABgACAAAAAAAADAEABsACAAAAAAAADAEAB4ACAAEAAAAADAFAAwACAACAAAAAAAFAA8ACAACAAAAABAFABIACAACAAAAABAFABUACAABAAAAABAFABgACAACAAAAABAFABsACAACAAAAABAFAB4ACAAEAAAAAFAGAAwACAABAAAAAAAGAA8ACAACAAAAABAGABIACAACAAAAABAGABUACAAAAAAAADAGABgACAACAAAAABAGABsACAACAAAAABAGAB4ACAAEAAAAADAHAAwACAABAAAAABAHAA8ACAABAAAAABAHABUACAACAAAAABAHABsACAABAAAAABAHAB4ACAAEAAAAADAIAAwACAABAAAAABAIAA8ACAACAAAAABAIABIACAABAAAAABAIABUACAACAAAAABAIABgACAACAAAAABAIABsACAACAAAAABAIAB4ACAAEAAAAADAJAAwACAAAAAAAADAJAA8ACAACAAAAABAJABIACAABAAAAABAJABUACAABAAAAABAJABgACAACAAAAABAJABsACAACAAAAABAJAB4ACAAEAAAAAFAKAAwACAABAAAAABAKAA8ACAABAAAAABAKABIACAAAAAAAADAKABUACAACAAAAABAKABgACAACAAAAABAKABsACAACAAAAABAKAB4ACAAEAAAAAFALAAwACAAAAAAAADALAA8ACAAAAAAAADALABIACAABAAAAABALABUACAACAAAAABALABgACAACAAAAABALABsACAACAAAAABALAB4ACAADAAAAAAAMAAwACAACAAAAABAMABIACAAAAAAAADAMABUACAACAAAAABAMABgACAACAAAAABAMAB4ACAADAAAAAFANAAwACAACAAAAABANAA8ACAAAAAAAADANABIACAACAAAAABANABUACAACAAAAABANABgACAABAAAAABANABsACAABAAAAABANAB4ACAADAAAAAFAOAAwACAABAAAAABAOABIACAACAAAAABAOABgACAABAAAAABAOABsACAABAAAAABAOAB4ACAADAAAAAFAPAAwACAACAAAAABAPAA8ACAACAAAAABAPABIACAABAAAAABAPABUACAABAAAAABAPABgACAAAAAAAADAPABsACAAAAAAAADAPAB4ACAADAAAAAFAQAAwACAACAAAAABAQAA8ACAABAAAAABAQABIACAACAAAAABAQABUACAABAAAAABAQABgACAABAAAAABAQABsACAABAAAAABAQAB4ACAADAAAAAAARAAwACAAAAAAAADARAA8ACAACAAAAABARABIACAACAAAAABARABUACAAAAAAAADARABgACAAAAAAAADARABsACAAAAAAAADARAB4ACAADAAAAAAASAAwACAABAAAAABASAA8ACAACAAAAABASABIACAAAAAAAADASABUACAABAAAAABASABgACAACAAAAABASABsACAACAAAAABASAB4ACAADAAAAAFATAAwACAAAAAAAADATABIACAACAAAAABATABUACAAAAAAAADATABgACAACAAAAABATABsACAACAAAAABATAB4ACAADAAAAAFAUAAwACAACAAAAABAUAA8ACAABAAAAABAUABIACAACAAAAABAUABUACAACAAAAABAUABgACAABAAAAABAUABsACAABAAAAABAUAB4ACAADAAAAAAAVAAwACAACAAAAABAVAA8ACAABAAAAABAVABIACAABAAAAABAVABUACAACAAAAABAVABgACAACAAAAABAVABsACAACAAAAABAVAB4ACAADAAAAAAAWAAwACAABAAAAABAWAA8ACAAAAAAAADAWABIACAACAAAAABAWABUACAABAAAAABAWABgACAACAAAAABAWABsACAACAAAAABAWAB4ACAADAAAAAAAXAAwACAACAAAAABAXAA8ACAABAAAAABAXABIACAACAAAAABAXABUACAACAAAAABAXABgACAABAAAAABAXABsACAACAAAAABAXAB4ACAADAAAAAAAYAAwACAAAAAAAAAAYAA8ACAAAAAAAADAYABUACAACAAAAABAYABgACAABAAAAABAYABsACAACAAAAABAYAB4ACAADAAAAAFAZAA8ACAACAAAAABAZABIACAABAAAAABAZABUACAACAAAAABAZABgACAAAAAAAADAZABsACAADAAAAADAZAB4ACAADAAAAAAAaAAwACAAAAAAAAAAaAA8ACAACAAAAABAaABIACAABAAAAABAaABUACAACAAAAABAaABgACAABAAAAABAaABsACAACAAAAAAAaAB4ACAADAAAAAAAbAAwACAABAAAAABAbAA8ACAABAAAAABAbABUACAACAAAAABAbABgACAAAAAAAADAbABsACAADAAAAAAAbAB4ACAADAAAAAFAcAAwACAAAAAAAADAcAA8ACAACAAAAABAcABIACAABAAAAABAcABUACAACAAAAABAcABgACAACAAAAABAcABsACAACAAAAAAAcAB4ACAADAAAAAAAdAAwACAABAAAAABAdAA8ACAACAAAAABAdABIACAAAAAAAADAdABUACAACAAAAABAdABgACAACAAAAABAdABsACAADAAAAAAAdAB4ACAADAAAAAAAeAAwACAAAAAAAADAeABIACAACAAAAABAeABUACAABAAAAABAeABgACAABAAAAABAeABsACAACAAAAAAAeAB4ACAADAAAAAAAfAAwACAACAAAAABAfAA8ACAABAAAAABAfABIACAACAAAAABAfABUACAACAAAAABAfABgACAACAAAAABAfABsACAADAAAAAAAfAB4ACAADAAAAAAAgAAwACAACAAAAABAgAA8ACAABAAAAABAgABIACAABAAAAABAgABUACAACAAAAABAgABgACAACAAAAABAgABsACAADAAAAADAgAB4ACAADAAAAAAAhAAwACAABAAAAABAhAA8ACAAAAAAAADAhABIACAACAAAAABAhABUACAACAAAAABAhABgACAABAAAAABAhABsACAADAAAAADAhAB4ACAADAAAAAAAiAAwACAACAAAAABAiAA8ACAABAAAAABAiABIACAACAAAAABAiABUACAACAAAAABAiABgACAABAAAAABAiABsACAADAAAAADAiAB4ACAADAAAAAAAjAAwACAACAAAAABAjAA8ACAAAAAAAADAjABIACAAAAAAAADAjABgACAAAAAAAADAjABsACAAAAAAAAAAjAB4ACAADAAAAAFAkAAwACAACAAAAABAkABIACAACAAAAABAkABUACAABAAAAABAkABgACAABAAAAABAkABsACAADAAAAADAkAB4ACAADAAAAAFAlAAwACAABAAAAABAlAA8ACAACAAAAABAlABIACAACAAAAABAlABUACAAAAAAAADAlABgACAAAAAAAADAlAB4ACAADAAAAAAAmAAwACAACAAAAABAmAA8ACAABAAAAABAmABIACAABAAAAABAmABUACAABAAAAABAmABgACAACAAAAABAmABsACAADAAAAAGAmAB4ACAADAAAAAFAnAAwACAACAAAAABAnAA8ACAACAAAAABAnABIACAACAAAAABAnABUACAAAAAAAADAnABgACAACAAAAABAnABsACAADAAAAADAnAB4ACAADAAAAAFAoAAwACAABAAAAABAoAA8ACAABAAAAABAoABIACAACAAAAABAoABUACAACAAAAABAoABgACAABAAAAABAoABsACAADAAAAAGAoAB4ACAAEAAAAAAApAAwACAABAAAAABApAA8ACAABAAAAABApABUACAACAAAAABApABgACAACAAAAABApABsACAADAAAAAGApAB4ACAAEAAAAAAAqAAwACAAAAAAAADAqAA8ACAAAAAAAADAqABIACAABAAAAABAqABUACAABAAAAABAqABgACAACAAAAABAqABsACAADAAAAADAqAB4ACAAEAAAAAAArAAwACAABAAAAABArAA8ACAABAAAAABArABIACAAAAAAAADArABUACAABAAAAABArABsACAADAAAAADArAB4ACAAEAAAAAAAsAAwACAAAAAAAADAsAA8ACAAAAAAAADAsABIACAACAAAAABAsABUACAAAAAAAADAsABgACAADAAAAAFAsABsACAADAAAAAAAsAB4ACAAEAAAAAAAtAAwACAACAAAAABAtAA8ACAACAAAAABAtABIACAACAAAAABAtABUACAACAAAAABAtABgACAADAAAAADAtABsACAADAAAAADAtAB4ACAAEAAAAAAAuAAwACAACAAAAABAuAA8ACAACAAAAABAuABIACAABAAAAABAuABUACAACAAAAABAuABgACAADAAAAAFAuABsACAADAAAAAAAuAB4ACAADAAAAADAvAAwACAABAAAAABAvAA8ACAABAAAAABAvABIACAACAAAAABAvABUACAABAAAAABAvABgACAADAAAAAFAvABsACAADAAAAAAAvAB4ACAADAAAAAGAwAAwACAACAAAAABAwAA8ACAACAAAAABAwABIACAACAAAAABAwABUACAACAAAAABAwABgACAADAAAAAFAwABsACAADAAAAAFAwAB4ACAADAAAAAAAxAAwACAACAAAAABAxAA8ACAACAAAAABAxABIACAACAAAAABAxABUACAACAAAAABAxABgACAADAAAAAFAxABsACAABAAAAAAAxAB4ACAAEAAAAAAATAA8ACAABAAAAAAATAA4ACAABAAAAADAeAA4ACAABAAAAADAeAA8ACAABAAAAAAAMAA8ACAABAAAAAAAMAA4ACAABAAAAADAyABEACAABAAAAADAyABIACAABAAAAABAyAA4ACAABAAAAADAyABcACAAEAAAAAAAyABgACAABAAAAAAAyABUACAABAAAAAAAyAAwACAABAAAAABAyAA8ACAABAAAAABAyABsACAABAAAAABAyAB0ACAABAAAAACAyABoACAABAAAAACAyABQACAABAAAAADAyAB4ACAAEAAAAAAAYABEACAAAAAAAAAAYABIACAABAAAAAAABABgACAABAAAAABAmABoACAAAAAAAAAAAAAsACAACAAMAAAABAAsACAAEAAMAAAACAAsACAAEAAMAAAADAAsACAAEAAMAABAZAAsACAAEAAIAAAAWAAsACAAEAAIAAAAXAAsACAAEAAIAAAAYAAsACAAEAAIAAAAcAAsACAAEAAIAAAAbAAsACAAEAAIAAAAaAAsACAAEAAIAAAAWAAkACAAEAAIAAAAWAAoACAAEAAIAAAAXAAoACAAEAAIAAAAYAAoACAAGAAMAAAAZAAoACAAGAAMAAAAaAAkACAAEAAIAAAAZAAkACAAEAAIAAAAYAAkACAAEAAIAAAAbAAkACAAEAAIAAAAXAAkACAAEAAIAAAAcAAoACAAEAAIAAAAbAAoACAAEAAIAAAAaAAoACAAGAAMAAAAcAAkACAAEAAIAAAAEAAsACAAIAAIAAAAFAAsACAAJAAIAAAAEAAoACAAGAAIAAAAFAAoACAAHAAIAAAAuAAsACAAFAAIAAAAsAAsACAADAAIAAAAtAAoACAABAAIAAAAuAAoACAACAAIAAAAsAAoACAAAAAIAAAAvAAsACAAJAAEAAAAwAAsACAAJAAEAAAAxAAsACAAJAAEAAAAyAAsACAAJAAEAAAAWAAcACAABAAIAAAAXAAUACAAKAAIAAAAXAAYACAAGAAEAAAAXAAcACAABAAIAAAAYAAcACAABAAIAAAAZAAUACAAAAAMAAAAZAAYACAAGAAEAAAAZAAcACAABAAIAAAAaAAcACAABAAIAAAAbAAUACAABAAMAAAAbAAYACAAGAAEAAAAbAAcACAABAAIAAAAcAAcACAABAAIAAAAUAAcACAACAAIAABAUAAkACAAFAAIAABAUAAoACAADAAIAAAAUAAsACAADAAIAAAAeAAkACAAFAAIAAAAeAAcACAACAAIAAAAeAAoACAADAAIAABAeAAsACAADAAIAABAfAAgACAAHAAEAAAAfAAkACAAIAAEAAAAUAAgACAAFAAIAABAVAAgACAAEAAIAAAAWAAgACAAEAAIAAAAXAAgACAAEAAIAAAAYAAgACAAEAAIAAAAZAAgACAAEAAIAAAAaAAgACAAEAAIAAAAbAAgACAAEAAIAAAAcAAgACAAEAAIAAAAdAAgACAAEAAIAAAAeAAgACAAFAAIAAAAdAAkACAAEAAIAAAAdAAoACAAEAAIAAAAdAAsACAAEAAIAAAAVAAsACAAEAAIAAAAVAAoACAAEAAIAAAAVAAkACAAEAAIAAAAVAAcACAABAAIAAAAdAAcACAABAAIAAAA=")
+tile_set = SubResource("TileSet_dk7my")
+
+[node name="Player" parent="." instance=ExtResource("2_gkvor")]
+z_index = 5
+position = Vector2(400, 192)
+collision_mask = 10

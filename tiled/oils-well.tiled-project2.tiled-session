@@ -1,0 +1,41 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "oils_well.tsx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "oils_well.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "oils_well_2.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 11
+        },
+        "oilswell_pipebody.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "D:/programmering/Godot Projects/Oilswell/graphics/tilemap_png",
+    "map.tileHeight": 6,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "oils_well.tsx",
+        "oilswell_pipebody.tsx"
+    ],
+    "project": "oils-well.tiled-project2.tiled-project",
+    "recentFiles": [
+        "oilswell_pipebody.tsx",
+        "oils_well.tsx",
+        "oils_well_2.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}

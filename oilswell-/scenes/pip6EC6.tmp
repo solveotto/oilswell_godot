@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5et68oflur8b"]
+
+[ext_resource type="Script" path="res://scripts/pipe2.gd" id="1_5l1rp"]
+[ext_resource type="Texture2D" uid="uid://b4ltajnfyfvsk" path="res://assests/pipe/pipe_down.png" id="2_ktlct"]
+[ext_resource type="Texture2D" uid="uid://k24bqadfgryv" path="res://assests/pipe/pipe_closed.png" id="3_sqjma"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04mht"]
+radius = 25.2982
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0kwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ktlct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sqjma")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}]
+
+[node name="PipeHead" type="CharacterBody2D"]
+collision_mask = 30
+motion_mode = 1
+script = ExtResource("1_5l1rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_04mht")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_i0kwu")
+animation = &"down"
+frame_progress = 0.549423
+centered = false
+
+[node name="cur_dir_ray" type="RayCast2D" parent="."]
+position = Vector2(8, 7)
+collision_mask = 26
+collide_with_areas = true
+
+[node name="nxt_dir_ray" type="RayCast2D" parent="."]
+position = Vector2(8, 7)
+collision_mask = 26
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
