@@ -37,6 +37,13 @@ var input_to_dir = {
 
 
 func _ready():
+	# Signals
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		if enemy.has_signal("kill"):  # Ensure the signal exists
+			
+			enemy.connect("kill", Callable(self, "_on_death"))
+	
 	position.snapped(Vector2(tile_size, tile_size))	
 	rwd_timer.connect("timeout", Callable(self, "_on_ReversingTimer_timeout"))
 	set_head_dir(Vector2.DOWN)
@@ -205,3 +212,6 @@ func draw_segments():
 func _on_ReversingTimer_timeout():
 	# Timer has finished, set reversing to false
 	reversing_delay = false
+
+func _on_death():
+	print("Player Killed")

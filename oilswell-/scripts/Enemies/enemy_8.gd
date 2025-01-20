@@ -1,5 +1,7 @@
 extends Area2D
 
+signal kill
+
 var tile_size = 16
 var start_pos_x = 830
 var end_pos_x = -16
@@ -54,4 +56,4 @@ func _on_body_entered(body):
 		spawn_timer.wait_time = 10
 		spawn_timer.start()
 	else:
-		print("Kill player")
+		emit_signal("kill")

@@ -10,7 +10,7 @@ region = Rect2(64.117, 112.028, 15.883, 15.9715)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
 size = Vector2(8.32602, 10.4664)
 
-[node name="enemy_8" type="Area2D"]
+[node name="enemy_8" type="Area2D" groups=["Enemies"]]
 z_index = 2
 collision_layer = 32
 collision_mask = 17
