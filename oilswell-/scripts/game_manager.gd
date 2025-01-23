@@ -25,6 +25,11 @@ var monster_left_x = -16
 var monster_right_x = 830
 
 
+# Level Data
+var main_scene
+
+
+
 func _ready():
 	pass
 
@@ -47,7 +52,7 @@ func add_oil_point():
 	oil_count -= 1
 	check_level_end()
 
-	print(oil_count)
+	#print(oil_count)
 
 func check_level_end():
 	if oil_count == 0:
@@ -55,3 +60,6 @@ func check_level_end():
 		current_level = "Level_%s" % str(level_counter)
 		load_level(current_level)
 		
+
+func reload_level():
+	pass
