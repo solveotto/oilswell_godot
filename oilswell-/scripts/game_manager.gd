@@ -5,7 +5,7 @@ var level_instance : PackedScene
 
 # User Interface
 @onready var score_label: Label 
-
+	
 # Stats
 @export var current_level = "Level_1"
 @export var score:int = 0
@@ -15,24 +15,24 @@ var level_counter: int = 1
 
 
 # Map coordinates
-var row_1_y = 214
-var row_2_y = 264
-var row_3_y = 312
-var row_4_y = 360
-var row_5_y = 408
-var row_6_y = 456
-var monster_left_x = -16
-var monster_right_x = 830
+var map_row_1 = 214
+var map_row_2 = 264
+var map_row_3 = 312
+var map_row_4 = 360
+var map_row_5 = 408
+var map_row_6 = 456
+var map_column_left = -16
+var map_column_right = 830
 
 
-# Level Data
-var main_scene
-
+# Monster Data
+var monster_speed = 100
+var timestop = false
 
 
 func _ready():
 	pass
-
+	
 func unload_level():
 	if (is_instance_valid(level_instance)):
 		level_instance.queue_free()
@@ -63,3 +63,25 @@ func check_level_end():
 
 func reload_level():
 	pass
+	
+
+func connect_signal_to_function(_node, _signal, _func):
+	# Connect the signal from the Area2D instance
+	_node.connect(_signal, Callable(self, _func))
+
+func _on_time_stop():
+	print("TIMESTOP")
+
+	monster_speed = 10
+	timestop = true
+	
+	var timer = Timer.new()
+	timer.wait_time = 10.0 
+	timer.autostart = true
+	timer.one_shot = false
+	timer.connect("timeout", Callable(self, "_on_timestop_timer_timeout"))
+	add_child(timer)  # Add the timer as a child of this node
+
+func _on_timestop_timer_timeout():
+	monster_speed = 100
+	timestop = false

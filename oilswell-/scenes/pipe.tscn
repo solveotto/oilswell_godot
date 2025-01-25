@@ -48,6 +48,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_sqjma")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_6elfa")
 }, {
 "duration": 1.0,
@@ -82,7 +90,7 @@ shape = SubResource("CircleShape2D_04mht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_i0kwu")
-animation = &"down"
+animation = &"stop"
 centered = false
 
 [node name="cur_dir_ray" type="RayCast2D" parent="."]

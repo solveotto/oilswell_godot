@@ -112,9 +112,16 @@ func _get_user_input():
 
 func retract_pipe():
 	if pipe_segments.size() > 0:
-			#print("pos: ", position / tile_size, "Last segment: ",  pipe_segments[-1])
-			#print(position / tile_size - pipe_segments[-1])
-			var head_dir = position / tile_size - pipe_segments[-1]
+			var head_dir: Vector2 
+			
+			# Stops animation when reversing
+			pipe.stop()
+			
+			# Sets the head direction
+			if pipe_segments.size() != 1:
+				head_dir = pipe_segments[-1] - pipe_segments[-2]
+			else:
+				head_dir = position/tile_size - pipe_segments[-1]
 			if head_dir != Vector2(0,0):
 				set_head_dir(Vector2(head_dir))
 			
@@ -125,6 +132,7 @@ func retract_pipe():
 			moving = true
 			await rwd_head_tween.finished
 			moving = false
+		
 	elif pipe_segments.size() == 0:
 		reversing = false  # Stop reversing when all segments are visited
 		add_segment()
