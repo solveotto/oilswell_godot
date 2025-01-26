@@ -4,6 +4,8 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#GameManager.load_level("Level_1")
+	var highscore = GameManager.load_from_file()
+	print("Highscore: ", highscore)
 	pass # Replace with function body.
 
 

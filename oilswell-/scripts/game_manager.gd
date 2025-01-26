@@ -4,9 +4,9 @@ extends Node2D
 # System
 var level_instance : PackedScene
 const MAIN = preload("res://scenes/Menues/main.tscn")
-const LEVEL_1 = preload("res://scenes/Levels/Level_1.tscn")
+#const LEVEL_1 = preload("res://scenes/Levels/Level_1.tscn")
 const NEXT_LEVEL_SCREEN = preload("res://scenes/Menues/next_level_screen.tscn")
-
+const GAME_OVER = preload("res://scenes/Menues/game_over.tscn")
 
 # User Interface
 @onready var score_label: Label 
@@ -14,8 +14,9 @@ const NEXT_LEVEL_SCREEN = preload("res://scenes/Menues/next_level_screen.tscn")
 
 # Stats
 @export var current_level = "Level_1"
+var player_name: String
 @export var score:int = 0
-@export var lives:int = 3
+@export var lives:int = 1
 var oil_count: int = 0
 var level_counter: int = 1
 
@@ -55,6 +56,8 @@ func load_level(level_name : String):
 	get_tree().change_scene_to_packed(NEXT_LEVEL_SCREEN)
 	await get_tree().create_timer(3).timeout
 	
+	# Check if highscore reached
+	
 	if (level_path):
 		get_tree().change_scene_to_file(level_path)
 
@@ -68,7 +71,15 @@ func loose_life():
 		print("Game Over!")
 		level_counter = 1
 		lives = 3
+		save_to_file(score)
+		
+		
 		unload_level()
+		
+		# Show game over screen
+		get_tree().change_scene_to_packed(GAME_OVER)
+		await get_tree().create_timer(3).timeout
+		
 		get_tree().change_scene_to_packed(MAIN)
 		
 		
@@ -112,23 +123,15 @@ func _on_timestop_timer_timeout():
 
 
 
-
-
 #### HIGH SCORE ####
+func save_to_file(content):
+	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+	file.store_string(str(content))
 
-@export var save_file: String = "user://high_scores.save"
-
-# Save the high scores to a file
-func save_high_scores(high_scores: Array[Dictionary]) -> void:
-	pass
-
-# Load high scores from a file
-func load_high_scores() -> Array[Dictionary]:
-	pass
-
-# Add a new score and manage top 10
-func add_high_score(initials: String, score: int) -> Array[Dictionary]:
-	pass
-# Custom sorting function for scores
-func _compare_scores(a: Dictionary, b: Dictionary) -> bool:
-	pass
+func load_from_file():
+	var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		return content
+	else:
+		print("File not found")
