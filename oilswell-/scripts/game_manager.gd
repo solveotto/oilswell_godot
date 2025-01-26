@@ -109,3 +109,26 @@ func _on_time_stop():
 func _on_timestop_timer_timeout():
 	monster_speed = 100
 	timestop = false
+
+
+
+
+
+#### HIGH SCORE ####
+
+@export var save_file: String = "user://high_scores.save"
+
+# Save the high scores to a file
+func save_high_scores(high_scores: Array[Dictionary]) -> void:
+	pass
+
+# Load high scores from a file
+func load_high_scores() -> Array[Dictionary]:
+	pass
+
+# Add a new score and manage top 10
+func add_high_score(initials: String, score: int) -> Array[Dictionary]:
+	pass
+# Custom sorting function for scores
+func _compare_scores(a: Dictionary, b: Dictionary) -> bool:
+	pass
