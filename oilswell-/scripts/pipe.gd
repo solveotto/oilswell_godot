@@ -280,7 +280,6 @@ func _on_death():
 	cur_dir = Vector2.ZERO
 	nxt_dir = Vector2.ZERO
 	respawning = true
-	lose_life()
 	collision_shape_2d.disabled = true
 	
 	var colors = [Color.RED, Color.GREEN, Color(1, 1, 1, 0), Color.BLUE, Color.WHITE,  Color(1, 1, 1, 0), Color.YELLOW, ]
@@ -303,6 +302,7 @@ func _on_death():
 		
 		#await get_tree().create_timer(0.1).timeout
 	#respawning = false
+	lose_life()
 	reversing = true
 	
 	#respawn_timer.start()
@@ -321,6 +321,6 @@ func _on_pipe_fully_retracted():
 
 
 func lose_life():
-	GameManager.lives -= 1
+	GameManager.loose_life()
 	# Notify the life display to redraw
 	life.update_lives()

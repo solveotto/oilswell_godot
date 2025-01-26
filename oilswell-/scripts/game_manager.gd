@@ -3,19 +3,23 @@ extends Node2D
 # System
 var level_instance : PackedScene
 
+const MAIN = preload("res://scenes/main.tscn")
+const LEVEL_1 = preload("res://scenes/Levels/Level_1.tscn")
+const NEXT_LEVEL_SCREEN = preload("res://next_level_screen.tscn")
+
 # User Interface
 @onready var score_label: Label 
 @onready var life_texture: Texture2D = preload("res://assests/pipe/pipe_right.png")
-	
 # Stats
 @export var current_level = "Level_1"
 @export var score:int = 0
-@export var lives:int = 3
+@export var lives:int = 1
 var oil_count: int = 0
-var level_counter: int = 1
+var level_counter: int = 2
 
 var player
 var timestop_node
+var life_icon
 
 
 # Map coordinates
@@ -44,9 +48,28 @@ func unload_level():
 func load_level(level_name : String):
 	unload_level()
 	var level_path := "res://scenes/Levels/%s.tscn" % level_name
+	
+	# Level splash screen
+	get_tree().change_scene_to_file("res://next_level_screen.tscn")
+	await get_tree().create_timer(3).timeout
+	
 	if (level_path):
 		get_tree().change_scene_to_file(level_path)
 
+
+func loose_life():
+	lives -= 1
+	print("Current lives: ", lives)
+	
+	# Game over
+	if lives == 0:
+		print("Game Over!")
+		level_counter = 1
+		lives = 3
+		unload_level()
+		get_tree().change_scene_to_packed(MAIN)
+		
+		
 
 func add_oil_point():
 	score += 10
@@ -54,7 +77,6 @@ func add_oil_point():
 	oil_count -= 1
 	check_level_end()
 
-	#print(oil_count)
 
 func check_level_end():
 	if oil_count == 0:

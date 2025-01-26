@@ -17,6 +17,7 @@ const ENEMY_13 = preload("res://scenes/Enemies/enemy_13.tscn")
 func _ready():
 	GameManager.player = player
 	GameManager.timestop_node = time_stop
+	GameManager.life_icon = $HUD/Life
 
 	GameManager.oil_count = get_tree().get_nodes_in_group("oil_nodes").size()
 	GameManager.score_label = score_label
@@ -30,7 +31,7 @@ func _ready():
 	spawn_monster(ENEMY_8, Vector2(GameManager.map_column_right, GameManager.map_row_1),
 					Vector2(GameManager.map_column_left, GameManager.map_row_1),
 					Vector2(GameManager.map_column_right, GameManager.map_row_1),
-					20, 22)
+					2, 2)
 	# Row 2 Right
 	spawn_monster(ENEMY_12, Vector2(GameManager.map_column_left, GameManager.map_row_1),
 				Vector2(GameManager.map_column_right, GameManager.map_row_1),
