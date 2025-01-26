@@ -1,21 +1,23 @@
 extends Node2D
 
+
 # System
 var level_instance : PackedScene
-
-const MAIN = preload("res://scenes/main.tscn")
+const MAIN = preload("res://scenes/Menues/main.tscn")
 const LEVEL_1 = preload("res://scenes/Levels/Level_1.tscn")
-const NEXT_LEVEL_SCREEN = preload("res://next_level_screen.tscn")
+const NEXT_LEVEL_SCREEN = preload("res://scenes/Menues/next_level_screen.tscn")
+
 
 # User Interface
 @onready var score_label: Label 
 @onready var life_texture: Texture2D = preload("res://assests/pipe/pipe_right.png")
+
 # Stats
 @export var current_level = "Level_1"
 @export var score:int = 0
-@export var lives:int = 1
+@export var lives:int = 3
 var oil_count: int = 0
-var level_counter: int = 2
+var level_counter: int = 1
 
 var player
 var timestop_node
@@ -50,7 +52,7 @@ func load_level(level_name : String):
 	var level_path := "res://scenes/Levels/%s.tscn" % level_name
 	
 	# Level splash screen
-	get_tree().change_scene_to_file("res://next_level_screen.tscn")
+	get_tree().change_scene_to_packed(NEXT_LEVEL_SCREEN)
 	await get_tree().create_timer(3).timeout
 	
 	if (level_path):

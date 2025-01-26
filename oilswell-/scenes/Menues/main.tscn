@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckt7ikqnp27io"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_3oru4"]
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_a7eqo"]
+[ext_resource type="Script" path="res://scripts/Menues/main_menu.gd" id="1_qltth"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_ieyev"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.996215, 1.0082)
-script = ExtResource("1_3oru4")
+script = ExtResource("1_qltth")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -27,7 +27,7 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.999999, 0.994789, 0.457201, 1)
-theme_override_fonts/font = ExtResource("2_a7eqo")
+theme_override_fonts/font = ExtResource("2_ieyev")
 theme_override_font_sizes/font_size = 45
 text = "Spill"
 
