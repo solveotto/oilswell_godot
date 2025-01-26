@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckt7ikqnp27io"]
+[gd_scene load_steps=3 format=3 uid="uid://ckt7ikqnp27io"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_ncbm5"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_3oru4"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_a7eqo"]
 
-[node name="main" type="Node2D"]
-script = ExtResource("1_ncbm5")
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.996215, 1.0082)
+script = ExtResource("1_3oru4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 819.0
+offset_bottom = 288.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999999, 0.994789, 0.457201, 1)
+theme_override_fonts/font = ExtResource("2_a7eqo")
+theme_override_font_sizes/font_size = 45
+text = "Spill"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Avslutt"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

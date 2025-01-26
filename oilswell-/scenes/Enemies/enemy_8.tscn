@@ -8,7 +8,7 @@ atlas = ExtResource("1_mvig8")
 region = Rect2(64.117, 112.028, 15.883, 15.9715)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
-size = Vector2(8.32602, 10.4664)
+size = Vector2(8.32602, 8.28506)
 
 [node name="enemy_8" type="Area2D" groups=["Enemies"]]
 z_index = 2
@@ -22,7 +22,7 @@ scale = Vector2(1.68274, 1.21773)
 texture = SubResource("AtlasTexture_xxxcs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.518144, 0.788638)
+position = Vector2(0.518144, 2.5)
 scale = Vector2(2.75807, 1.56909)
 shape = SubResource("RectangleShape2D_p1r28")
 

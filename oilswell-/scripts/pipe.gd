@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
 
-
-
-
+signal pipe_fully_retracted
 
 const START_POS = Vector2(25,12)
 
@@ -15,6 +13,7 @@ var reversing = false
 var reversing_delay = false
 var respawning = false
 
+
 var cur_dir := Vector2.ZERO
 var nxt_dir := Vector2.ZERO
 
@@ -23,12 +22,15 @@ var pipe_segments_color_index = 0
 
 var oil_position_data = []
 
+@onready var move_sound = $AudioStreamPlayer
+@onready var life = $"../HUD/Life"
 @onready var cur_ray = $cur_dir_ray
 @onready var nxt_ray = $nxt_dir_ray
+@onready var collision_shape_2d = $CollisionShape2d
+
 @onready var pipe = $AnimatedSprite2D
 
 #Load current tilemap
-#@onready var collision_shape = $CollisionShape2D
 @onready var respawn_timer = $RespawnTimer
 @onready var tilemap = $"../TileMap"
 @onready var pb_tilemap = $"../PipeBody_TileMap"
@@ -50,6 +52,7 @@ func _ready():
 		#if enemy.has_signal("kill"):  # Ensure the signal exists
 			#enemy.connect("kill", Callable(self, "_on_death"))
 	
+	self.connect("pipe_fully_retracted", Callable(self, "_on_pipe_fully_retracted"))
 	
 	call_deferred("_connect_enemy_signals")  # Delays execution slightly
 	
@@ -61,16 +64,22 @@ func _ready():
 	
 	# Set the initial color
 	pb_tilemap.modulate = colors[pipe_segments_color_index]
+	
+	
+
+
 
 func _connect_enemy_signals():
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		_connect_enemy(enemy)
 
+
 # handles dynamically spawned enemies
 func _on_node_added(node):
 	if node.is_in_group("Enemies"):
 		_connect_enemy(node)
+
 
 func _connect_enemy(enemy):
 	if enemy.has_signal("kill") and not enemy.is_connected("kill", Callable(self, "_on_death")):
@@ -78,18 +87,21 @@ func _connect_enemy(enemy):
 
 
 func _process(_delta):
-	## DEBUG ##
-	_get_user_input()
+	
+	# Movement Logic
+	if !respawning:
+		_get_user_input()
 
 	if moving or respawning:
-
-		return
+		if reversing:
+			retract_pipe()
+		else:
+			return
 	else:
 		if reversing:
 			retract_pipe()
 		else:
 			move_head()
-
 
 
 func _get_user_input():
@@ -107,7 +119,6 @@ func _get_user_input():
 		reversing = true
 	elif Input.is_action_just_released("stop_reverse"):
 		reversing = false
-
 
 
 func retract_pipe():
@@ -136,6 +147,7 @@ func retract_pipe():
 	elif pipe_segments.size() == 0:
 		reversing = false  # Stop reversing when all segments are visited
 		add_segment()
+		emit_signal("pipe_fully_retracted")
 	return
 
 
@@ -229,30 +241,31 @@ func draw_segments():
 			# Draws a downwards segment on the first position
 			elif segment == START_POS:
 				pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_VERTICAL)
-				
-			# Vertical movmentz
-			elif previous_segment.x == next_segment.x:
-				pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_VERTICAL)
-				
-			# Horizontal movment
-			elif previous_segment.y == next_segment.y:
-				pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_HORIZONTAL)
-				
-			else:
-				# right/up or down/left
-				if previous_segment.y == -1 and next_segment.x == -1 or next_segment.y == -1 and previous_segment.x == -1:
-					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_RIGHT_UP_DOWN_LEFT)
-				# up/right or left/down
-				if previous_segment.y == 1 and next_segment.x == 1 or next_segment.y == 1 and previous_segment.x == 1:
-					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_UP_RIGHT_LEFT_DOWN)
-				# left/up or down/right
-				if previous_segment.y == -1 and next_segment.x == 1 or next_segment.y == -1 and previous_segment.x == 1:
-					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_LEFT_UP_DOWN_RIGHT)
-				# up/left or right/down
-				if previous_segment.y == 1 and next_segment.x == -1 or next_segment.y == 1 and previous_segment.x == -1:
-					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_UP_LEFT_RIGHT_DOWN)
 			
-			
+			if previous_segment and next_segment:
+				# Vertical movmentz
+				if previous_segment.x == next_segment.x:
+					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_VERTICAL)
+					
+				# Horizontal movment
+				elif previous_segment.y == next_segment.y:
+					pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_HORIZONTAL)
+					
+				else:
+					# right/up or down/left
+					if previous_segment.y == -1 and next_segment.x == -1 or next_segment.y == -1 and previous_segment.x == -1:
+						pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_RIGHT_UP_DOWN_LEFT)
+					# up/right or left/down
+					if previous_segment.y == 1 and next_segment.x == 1 or next_segment.y == 1 and previous_segment.x == 1:
+						pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_UP_RIGHT_LEFT_DOWN)
+					# left/up or down/right
+					if previous_segment.y == -1 and next_segment.x == 1 or next_segment.y == -1 and previous_segment.x == 1:
+						pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_LEFT_UP_DOWN_RIGHT)
+					# up/left or right/down
+					if previous_segment.y == 1 and next_segment.x == -1 or next_segment.y == 1 and previous_segment.x == -1:
+						pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_UP_LEFT_RIGHT_DOWN)
+				
+				
 			### DEBUG ####
 			#print("Position: ", position / tile_size, " - ",
 			  #"Previous segment: ", previous_segment, " - ",
@@ -267,7 +280,8 @@ func _on_death():
 	cur_dir = Vector2.ZERO
 	nxt_dir = Vector2.ZERO
 	respawning = true
-	#reversing = true
+	lose_life()
+	collision_shape_2d.disabled = true
 	
 	var colors = [Color.RED, Color.GREEN, Color(1, 1, 1, 0), Color.BLUE, Color.WHITE,  Color(1, 1, 1, 0), Color.YELLOW, ]
 	
@@ -287,13 +301,26 @@ func _on_death():
 		# Restore color
 		pipe_body.modulate =  Color.YELLOW
 		
-		reversing = true
-		
-		await get_tree().create_timer(0.1).timeout
+		#await get_tree().create_timer(0.1).timeout
+	#respawning = false
+	reversing = true
 	
-	respawning = false
+	#respawn_timer.start()
+	#respawning = false
+	
 
 func _on_RespawnTimer_timeout():
 	print("Respawned")
 	#reversing = false
 	respawning = false
+	collision_shape_2d.disabled = false
+
+func _on_pipe_fully_retracted():
+	respawning = false
+	reversing = false
+
+
+func lose_life():
+	GameManager.lives -= 1
+	# Notify the life display to redraw
+	life.update_lives()

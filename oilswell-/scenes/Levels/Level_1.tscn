@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=4 uid="uid://ch0qqu8148ok5"]
 
 [ext_resource type="Script" path="res://scripts/Levels/level1.gd" id="1_bexay"]
-[ext_resource type="Texture2D" uid="uid://df3ikjhfo4se4" path="res://assests/pipe/pipe_right.png" id="1_i2xeg"]
 [ext_resource type="PackedScene" uid="uid://c1eqf5quseroj" path="res://scenes/oil.tscn" id="1_me7qq"]
 [ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_1gjk2"]
 [ext_resource type="Texture2D" uid="uid://b42f4fymt58m0" path="res://assests/oilswell_backgrounds_spritesheet.png" id="3_6ejjc"]
 [ext_resource type="PackedScene" uid="uid://b5et68oflur8b" path="res://scenes/pipe.tscn" id="4_46l5j"]
 [ext_resource type="PackedScene" uid="uid://cmu6pn0s0hdx" path="res://scenes/timestop.tscn" id="4_bemu3"]
 [ext_resource type="Texture2D" uid="uid://cle7wps5qghya" path="res://assests/spritesheet_pipe_body.png" id="6_m86al"]
+[ext_resource type="PackedScene" uid="uid://dcrvx0thrmb6w" path="res://scenes/life.tscn" id="9_5g8ir"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1kqa7"]
 normal = Vector2(0, 1)
@@ -20,13 +20,13 @@ distance = 16.0
 normal = Vector2(-1, 0)
 distance = 8.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w6kcf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3t4g"]
 texture = ExtResource("3_6ejjc")
 0:0/0 = 0
 1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_n7gn8"]
-sources/0 = SubResource("TileSetAtlasSource_w6kcf")
+sources/0 = SubResource("TileSetAtlasSource_y3t4g")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhqcq"]
 texture = ExtResource("2_1gjk2")
@@ -214,6 +214,9 @@ script = ExtResource("1_bexay")
 
 [node name="HUD" type="Node" parent="."]
 
+[node name="Life" parent="HUD" instance=ExtResource("9_5g8ir")]
+position = Vector2(33, 33)
+
 [node name="ScoreLabel" type="Label" parent="HUD"]
 z_index = 1
 offset_left = 706.0
@@ -231,24 +234,6 @@ offset_right = 425.0
 offset_bottom = 179.0
 theme_override_colors/font_color = Color(0.772549, 0.760784, 0.12549, 1)
 text = "990"
-
-[node name="Life1" type="Sprite2D" parent="HUD"]
-z_index = 1
-position = Vector2(37, 69)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("1_i2xeg")
-
-[node name="Life2" type="Sprite2D" parent="HUD"]
-z_index = 1
-position = Vector2(53, 69)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("1_i2xeg")
-
-[node name="Life3" type="Sprite2D" parent="HUD"]
-z_index = 1
-position = Vector2(69, 69)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("1_i2xeg")
 
 [node name="Oil" type="Node" parent="."]
 

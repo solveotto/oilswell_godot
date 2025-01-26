@@ -1,10 +1,11 @@
-extends Node
+extends Node2D
 
 # System
 var level_instance : PackedScene
 
 # User Interface
 @onready var score_label: Label 
+@onready var life_texture: Texture2D = preload("res://assests/pipe/pipe_right.png")
 	
 # Stats
 @export var current_level = "Level_1"
@@ -12,6 +13,9 @@ var level_instance : PackedScene
 @export var lives:int = 3
 var oil_count: int = 0
 var level_counter: int = 1
+
+var player
+var timestop_node
 
 
 # Map coordinates
@@ -30,9 +34,7 @@ var monster_speed = 100
 var timestop = false
 
 
-func _ready():
-	pass
-	
+
 func unload_level():
 	if (is_instance_valid(level_instance)):
 		level_instance.queue_free()
@@ -70,8 +72,6 @@ func connect_signal_to_function(_node, _signal, _func):
 	_node.connect(_signal, Callable(self, _func))
 
 func _on_time_stop():
-	print("TIMESTOP")
-
 	monster_speed = 10
 	timestop = true
 	
