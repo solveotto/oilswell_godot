@@ -52,6 +52,8 @@ func _on_body_entered(body):
 		return  # Ignore extra collisions
 	
 	if body.name == "Player":
+		MusicManager.monster_sound.play()
+		GameManager.add_monster_points()
 		collision_handled = true
 		moving = false
 		position = spawn_pos

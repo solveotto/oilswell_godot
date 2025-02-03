@@ -30,6 +30,12 @@ var oil_position_data = []
 
 @onready var pipe = $AnimatedSprite2D
 
+
+@onready var move_snd = $sfx/move_snd	
+@onready var movement = $sfx/Movement
+@onready var retract_org = $sfx/RetractOrg
+
+
 #Load current tilemap
 @onready var respawn_timer = $RespawnTimer
 @onready var tilemap = $"../TileMap"
@@ -66,7 +72,9 @@ func _ready():
 	pb_tilemap.modulate = colors[pipe_segments_color_index]
 	
 	
-
+	
+	pipe.frame_changed.connect(_on_frame_changed)
+	
 
 
 func _connect_enemy_signals():
@@ -96,13 +104,17 @@ func _process(_delta):
 		if reversing:
 			retract_pipe()
 		else:
+			
 			return
 	else:
 		if reversing:
 			retract_pipe()
 		else:
 			move_head()
+			
 
+	if reversing == false:
+		retract_org.stop()
 
 func _get_user_input():
 	if Input.is_action_pressed("move_down"):
@@ -122,6 +134,10 @@ func _get_user_input():
 
 
 func retract_pipe():
+	if not retract_org.playing and pipe_segments.size() > 5:
+		retract_org.play()
+	
+	
 	if pipe_segments.size() > 0:
 			var head_dir: Vector2 
 			
@@ -143,6 +159,7 @@ func retract_pipe():
 			moving = true
 			await rwd_head_tween.finished
 			moving = false
+
 		
 	elif pipe_segments.size() == 0:
 		reversing = false  # Stop reversing when all segments are visited
@@ -152,7 +169,6 @@ func retract_pipe():
 
 
 func move_head() -> void:
-
 	# Create and force update of ray in current direction
 	cur_ray.target_position = cur_dir * tile_size
 	cur_ray.force_raycast_update()	
@@ -177,7 +193,8 @@ func move_head() -> void:
 	moving = true
 	await head_tween.finished
 	moving = false
-
+	
+	
 	#Record current position for tail
 	add_segment()
 	draw_segments()
@@ -202,7 +219,6 @@ func add_segment():
 	if tile_pos not in pipe_segments:
 		pipe_segments.append(tile_pos)
 
-
 #
 func draw_segments():
 	
@@ -223,7 +239,6 @@ func draw_segments():
 			var segment = pipe_segments[segment_index]
 			var previous_segment = null
 			var next_segment = null
-			#print("Drawing segments", pipe_segments)
 			
 			# Skips previous or next segments if out of range
 			if segment_index > 0:
@@ -276,11 +291,11 @@ func draw_segments():
 
 
 func _on_death():
-	print("Player Killed")
 	cur_dir = Vector2.ZERO
 	nxt_dir = Vector2.ZERO
 	respawning = true
 	collision_shape_2d.disabled = true
+	pipe.stop()
 	
 	var colors = [Color.RED, Color.GREEN, Color(1, 1, 1, 0), Color.BLUE, Color.WHITE,  Color(1, 1, 1, 0), Color.YELLOW, ]
 	
@@ -310,7 +325,6 @@ func _on_death():
 	
 
 func _on_RespawnTimer_timeout():
-	print("Respawned")
 	#reversing = false
 	respawning = false
 	collision_shape_2d.disabled = false
@@ -324,3 +338,10 @@ func lose_life():
 	GameManager.loose_life()
 	# Notify the life display to redraw
 	life.update_lives()
+
+
+
+func _on_frame_changed():
+	if (pipe.frame == 0 or pipe.frame == 1) and not MusicManager.bip.playing:  # Play sound only at frame 3
+		#movement.pitch_scale = 1.1
+		movement.play()

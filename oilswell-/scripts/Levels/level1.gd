@@ -31,7 +31,7 @@ func _ready():
 	spawn_monster(ENEMY_8, Vector2(GameManager.map_column_right, GameManager.map_row_1),
 					Vector2(GameManager.map_column_left, GameManager.map_row_1),
 					Vector2(GameManager.map_column_right, GameManager.map_row_1),
-					2, 2)
+					15, 20)
 	# Row 2 Right
 	spawn_monster(ENEMY_12, Vector2(GameManager.map_column_left, GameManager.map_row_1),
 				Vector2(GameManager.map_column_right, GameManager.map_row_1),

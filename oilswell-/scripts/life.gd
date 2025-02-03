@@ -17,5 +17,4 @@ func _draw():
 		draw_texture(PIPE_RIGHT, position)
 		
 func update_lives():
-	print("update_lives()")
 	queue_redraw()

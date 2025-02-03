@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm65njxqu4o6"]
+
+[ext_resource type="Texture2D" uid="uid://dunap0owi8d3t" path="res://assests/oilswell_highscore.png" id="1_c0w8l"]
+[ext_resource type="Script" path="res://scripts/Menues/highscore.gd" id="1_ucm55"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_5eln3"]
+[ext_resource type="LabelSettings" uid="uid://dh2lqvo8v8ulj" path="res://assests/label_settings.tres" id="2_mwvku"]
+[ext_resource type="Theme" uid="uid://cleu1u4axevxc" path="res://assests/lable_theme.tres" id="4_8j4s1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qngko"]
+font = ExtResource("2_5eln3")
+font_size = 18
+font_color = Color(1, 0.627451, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqjfb"]
+font_size = 25
+font_color = Color(1, 0.627451, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ucm55")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 776.0
+offset_bottom = 442.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="OilswellHighscore" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(408, 81.5)
+scale = Vector2(2.15, 2.10294)
+texture = ExtResource("1_c0w8l")
+
+[node name="Congratualtions" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 160.0
+offset_right = 815.0
+offset_bottom = 195.0
+text = "Congratualtions"
+label_settings = ExtResource("2_mwvku")
+horizontal_alignment = 1
+
+[node name="Your final score is in the" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 189.0
+offset_right = 809.0
+offset_bottom = 212.0
+text = "YOUR FINAL SCORE IS IN THE"
+label_settings = SubResource("LabelSettings_qngko")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Top ten" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 207.0
+offset_right = 815.0
+offset_bottom = 232.0
+theme = ExtResource("4_8j4s1")
+text = "TOP TEN"
+label_settings = SubResource("LabelSettings_iqjfb")
+horizontal_alignment = 1
+
+[node name="Please enter your initials" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 229.0
+offset_right = 816.0
+offset_bottom = 252.0
+theme = ExtResource("4_8j4s1")
+theme_override_colors/font_color = Color(0.413886, 0.598757, 1, 1)
+text = "PLEASE ENTER YOUR INITIALS"
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 272.0
+offset_right = 293.0
+offset_bottom = 465.0
+theme = ExtResource("4_8j4s1")
+theme_override_colors/font_color = Color(0.761664, 0.297833, 0.688721, 1)
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 22
+text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 272.0
+offset_right = 480.0
+offset_bottom = 464.0
+theme = ExtResource("4_8j4s1")
+theme_override_colors/font_color = Color(0.760784, 0.298039, 0.690196, 1)
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 22
+text = "no data"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 272.0
+offset_right = 560.0
+offset_bottom = 464.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("4_8j4s1")
+alignment = 1
+
+[node name="continue" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 224.0
+offset_right = 816.0
+offset_bottom = 247.0
+theme = ExtResource("4_8j4s1")
+theme_override_colors/font_color = Color(0.178604, 0.410124, 1, 1)
+text = "Please press SPACE to continue"
+horizontal_alignment = 1
+vertical_alignment = 1

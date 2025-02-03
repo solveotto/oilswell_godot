@@ -824,14 +824,6 @@ position = Vector2(40, 456)
 [node name="TimeStop" parent="Pickups" instance=ExtResource("4_bemu3")]
 position = Vector2(424, 456)
 
-[node name="ColorRect" type="ColorRect" parent="Pickups"]
-visible = false
-z_index = -1
-offset_top = 194.0
-offset_right = 816.0
-offset_bottom = 497.0
-color = Color(1, 1, 0.419608, 1)
-
 [node name="Map boundries" type="StaticBody2D" parent="."]
 collision_layer = 8
 
