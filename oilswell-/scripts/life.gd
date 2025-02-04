@@ -8,11 +8,11 @@ func _ready():
 
 
 func _draw():
-	var life_count = GameManager.lives
+	var life_count = GameManager.life_count
 	var icon_size = Vector2(16, 16)
 	var start_position = Vector2(10, 10)
 	
-	for i in range(GameManager.lives):
+	for i in range(GameManager.life_count):
 		var position = start_position + Vector2(i * (icon_size.x + 5), 0)
 		draw_texture(PIPE_RIGHT, position)
 		

@@ -7,6 +7,12 @@ const NEXT_LEVEL_SCREEN = preload("res://scenes/Menues/next_level_screen.tscn")
 const GAME_OVER = preload("res://scenes/Menues/game_over.tscn")
 const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
 
+# Cups and bombs
+const CUP_OR_BOMB = [
+	preload("res://scenes/Enemies/enemy_cup.tscn"),
+	preload("res://scenes/Enemies/enemy_bomb.tscn")]
+
+
 @onready var backgorund = $Backgorund
 
 # User Interface
@@ -16,8 +22,10 @@ const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
 
 
 # Game Stats
+@onready var player_alive := true
 @onready var level_counter := 1
-@onready var lives := 1
+@onready var life_count := 3
+@onready var extra_lives_ctr := 0
 @onready var oil_count := 0
 
 @onready var score := 0
@@ -26,18 +34,22 @@ const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
 @onready var player_initials := "___"
 @onready var highscore_max_entries := 10
 
+
 @onready var player
 @onready var timestop_node
 @onready var life_icon
 
 
 # Map coordinates
-@onready var map_row_1 = 214
-@onready var map_row_2 = 264
-@onready var map_row_3 = 312
-@onready var map_row_4 = 360
-@onready var map_row_5 = 408
-@onready var map_row_6 = 456
+@onready var map_rows = [
+	{"y_pos": 214, "value": 20},
+	{"y_pos": 264, "value": 40},
+	{"y_pos": 312, "value": 50},
+	{"y_pos": 360, "value": 60},
+	{"y_pos": 408, "value": 70},
+	{"y_pos": 456, "value": 80}
+]
+
 @onready var map_column_left = -16
 @onready var map_column_right = 830
 
@@ -45,10 +57,13 @@ const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
 # Monster Data
 @onready var monster_speed = 100
 @onready var timestop = false
+var active_cup_bomb = null
+var spawning_enabled = false
 
 
 func _ready():
-	pass
+	print("SceneTree",SceneTree)
+	enable_spawning()
 
 
 
@@ -76,12 +91,12 @@ func unload_level():
 
 
 func loose_life():
-	lives -= 1
+	life_count -= 1
 	
 	# Game over
-	if lives == 0:
+	if life_count == 0:
 		level_counter = 1
-		lives = 3
+		life_count = 3
 		add_highscore()
 		
 		unload_level()
@@ -92,17 +107,8 @@ func loose_life():
 		
 		# Load highscore screeen
 		get_tree().change_scene_to_packed(HIGHSCORE)
-
-
-func add_oil_point():
-	score += 10
-	score_label.text = str(score)
-	oil_count -= 1
-	check_level_end()
-
-func add_monster_points():
-	score += 40
-	score_label.text = str(score)
+	else:
+		player_alive = true
 
 
 func check_level_end():
@@ -112,16 +118,48 @@ func check_level_end():
 		load_level(current_level)
 
 
+func extra_life_mangaer(score_to_add: int):
+	extra_lives_ctr += score_to_add
+	
+	if extra_lives_ctr > 100 and life_count >= 8:
+		life_count += 1
+		extra_lives_ctr = 0
+		life_icon.update_lives()
+	
+# SCORE HANDELING
+func add_oil_point():
+	score += 10
+	score_label.text = str(score)
+	oil_count -= 1
+	
+	extra_life_mangaer(10)
+	check_level_end()
+	
+	
+
+func add_monster_points(name):
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		if enemy.name == name:
+			for row in map_rows:
+				if row["y_pos"] == enemy.start_pos.y:
+					score += row["value"]
+					extra_life_mangaer(row["value"])
+	
+	# Updates score label
+	score_label.text = str(score)
+	
+
+
+# SIGNALS
 func connect_signal_to_function(_node, _signal, _func):
 	# Connect the signal from the Area2D instance
 	_node.connect(_signal, Callable(self, _func))
 
-
 func _on_time_stop():
 	monster_speed = 10
 	timestop = true
-	
-	
+
 	# Create timer
 	var timer = Timer.new()
 	timer.wait_time = 10.0 
@@ -134,7 +172,6 @@ func _on_time_stop():
 func _on_timestop_timer_timeout():
 	monster_speed = 100
 	timestop = false
-
 
 
 ### HIGHSCORE ###
@@ -224,3 +261,64 @@ func clear_highscore_file():
 		print("Highscore file cleared.")
 	else:
 		print("Failed to open highscore file for clearing.")
+
+
+
+
+
+# Spawn Cups and Bombs randomly
+
+
+func enable_spawning():
+	spawning_enabled = true
+	schedule_next_spawn()
+
+func disable_spawning():
+	spawning_enabled = false
+
+func schedule_next_spawn():
+	if not spawning_enabled:
+		return
+		
+	var random_time = randi_range(1, 50)
+	get_tree().create_timer(random_time).timeout.connect(try_spawn_monster)
+
+func try_spawn_monster():
+	print("Trying to spawn")
+	if not spawning_enabled or active_cup_bomb != null:
+		schedule_next_spawn()
+		return
+	spawn_cups_and_bombs()
+	schedule_next_spawn()
+
+
+func spawn_cups_and_bombs():
+	print("SPAWN CUP OR BOMB")
+	randomize()
+	
+	var instance = CUP_OR_BOMB[randi() % CUP_OR_BOMB.size()].instantiate()
+	#var random_spawn_time = randi_range(2, 10)
+	
+	var target_pos: Vector2
+	var random_row = GameManager.map_rows[randi_range(0, 5)]["y_pos"]
+	
+	
+	var random_start_pos: int
+	var random_left_right = randi_range(0,1)
+	if random_left_right == 0:
+		random_start_pos = GameManager.map_column_left
+		target_pos = Vector2(GameManager.map_column_right, random_row)
+	else:
+		random_start_pos = GameManager.map_column_right
+		target_pos = Vector2(GameManager.map_column_left, random_row)
+	
+	
+	instance.start_pos = Vector2(random_start_pos, random_row)
+	instance.target_pos = target_pos
+	instance.spawn_pos = instance.start_pos
+	instance.first_spawn_time = 1
+	instance.spawn_time = 1
+	instance.oneshot = true
+	add_child(instance)
+	
+	active_cup_bomb = instance

@@ -59,4 +59,3 @@ func stop_music():
 func play_bip():
 	if not bip.playing:
 		bip.play()
-	print("Playing BIP")

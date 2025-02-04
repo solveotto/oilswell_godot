@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_1gjk2"]
 [ext_resource type="Texture2D" uid="uid://b42f4fymt58m0" path="res://assests/oilswell_backgrounds_spritesheet.png" id="3_6ejjc"]
 [ext_resource type="PackedScene" uid="uid://b5et68oflur8b" path="res://scenes/pipe.tscn" id="4_46l5j"]
-[ext_resource type="PackedScene" uid="uid://cmu6pn0s0hdx" path="res://scenes/timestop.tscn" id="4_bemu3"]
+[ext_resource type="PackedScene" path="res://scenes/timestop.tscn" id="4_bemu3"]
 [ext_resource type="Texture2D" uid="uid://cle7wps5qghya" path="res://assests/spritesheet_pipe_body.png" id="6_m86al"]
 [ext_resource type="PackedScene" uid="uid://c4hpw16f1c1v3" path="res://scenes/life.tscn" id="9_5g8ir"]
 

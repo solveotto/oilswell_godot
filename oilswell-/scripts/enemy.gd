@@ -10,6 +10,7 @@ var moving = false
 var spawn_time: float
 var first_spawn_time: float
 var collision_handled = false  # Prevents multiple collisions
+var oneshot = false
 
 @onready var spawn_timer = $SpawnTimer
 @onready var sprite = $Sprite2D
@@ -29,19 +30,26 @@ func _ready():
 		if timestop.has_signal("timestop"):
 			timestop.connect("timestop", Callable(self, "_on_timestop"))
 	
+	#print(GameManager.player)
 	GameManager.player.connect("pipe_fully_retracted", Callable(self, "_on_pipe_fully_retracted"))
-	
+
 
 func _process(delta):
 	if moving:
 		position = position.move_toward(target_pos, GameManager.monster_speed * delta)
 		if position == target_pos:
-			moving = false  # Stop when reaching the target
-			spawn_timer.wait_time = spawn_time
-			position = spawn_pos
-			var random_spawn_time = randf_range(1,4)
-			spawn_timer.wait_time = spawn_time + int(random_spawn_time)
-			spawn_timer.start()
+			if oneshot:
+				queue_free()
+				#GameManager.spawning_enabled = false
+				GameManager.active_cup_bomb = null
+				remove_from_group("Enemies")
+			else:
+				moving = false  # Stop when reaching the target
+				spawn_timer.wait_time = spawn_time
+				position = spawn_pos
+				var random_spawn_time = randf_range(1,4)
+				spawn_timer.wait_time = spawn_time + int(random_spawn_time)
+				spawn_timer.start()
 	
 
 
@@ -53,7 +61,7 @@ func _on_body_entered(body):
 	
 	if body.name == "Player":
 		MusicManager.monster_sound.play()
-		GameManager.add_monster_points()
+		GameManager.add_monster_points(self.name)
 		collision_handled = true
 		moving = false
 		position = spawn_pos

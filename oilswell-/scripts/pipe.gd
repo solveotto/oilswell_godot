@@ -95,6 +95,9 @@ func _connect_enemy(enemy):
 
 
 func _process(_delta):
+	print(GameManager.active_cup_bomb)
+	print(GameManager.spawning_enabled)
+	
 	
 	# Movement Logic
 	if !respawning:
@@ -296,6 +299,7 @@ func _on_death():
 	respawning = true
 	collision_shape_2d.disabled = true
 	pipe.stop()
+	GameManager.player_alive = false
 	
 	var colors = [Color.RED, Color.GREEN, Color(1, 1, 1, 0), Color.BLUE, Color.WHITE,  Color(1, 1, 1, 0), Color.YELLOW, ]
 	

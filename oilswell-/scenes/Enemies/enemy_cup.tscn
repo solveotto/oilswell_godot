@@ -1,20 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://v1e6vju7vxyh"]
+[gd_scene load_steps=5 format=3 uid="uid://7ckmdhnegsvj"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_rrlsh"]
-[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_q1yq4"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_idrer"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_ehafr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxxcs"]
-atlas = ExtResource("2_q1yq4")
-region = Rect2(128, 96, 16, 16)
+atlas = ExtResource("2_ehafr")
+region = Rect2(80, 96, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
 size = Vector2(8.32602, 8.28506)
 
-[node name="enemy_1" type="Area2D" groups=["Enemies"]]
+[node name="enemy_cup" type="Area2D" groups=["Enemies"]]
 z_index = 2
 collision_layer = 32
-collision_mask = 17
-script = ExtResource("1_rrlsh")
+script = ExtResource("1_idrer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
