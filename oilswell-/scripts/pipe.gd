@@ -95,8 +95,7 @@ func _connect_enemy(enemy):
 
 
 func _process(_delta):
-	print(GameManager.active_cup_bomb)
-	print(GameManager.spawning_enabled)
+	#print(GameManager.active_cup_bomb)
 	
 	
 	# Movement Logic

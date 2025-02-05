@@ -263,37 +263,38 @@ func clear_highscore_file():
 		print("Failed to open highscore file for clearing.")
 
 
-
-
-
 # Spawn Cups and Bombs randomly
-
-
 func enable_spawning():
 	spawning_enabled = true
 	schedule_next_spawn()
 
+
 func disable_spawning():
 	spawning_enabled = false
+
 
 func schedule_next_spawn():
 	if not spawning_enabled:
 		return
-		
-	var random_time = randi_range(1, 50)
+	
+	
+	print("Try spawn monster timer started")
+	var random_time = randi_range(1, 5)
 	get_tree().create_timer(random_time).timeout.connect(try_spawn_monster)
+
 
 func try_spawn_monster():
 	print("Trying to spawn")
 	if not spawning_enabled or active_cup_bomb != null:
 		schedule_next_spawn()
+		print("Not spawning ")
 		return
 	spawn_cups_and_bombs()
 	schedule_next_spawn()
 
 
 func spawn_cups_and_bombs():
-	print("SPAWN CUP OR BOMB")
+	disable_spawning()
 	randomize()
 	
 	var instance = CUP_OR_BOMB[randi() % CUP_OR_BOMB.size()].instantiate()
@@ -322,3 +323,4 @@ func spawn_cups_and_bombs():
 	add_child(instance)
 	
 	active_cup_bomb = instance
+	enable_spawning()
