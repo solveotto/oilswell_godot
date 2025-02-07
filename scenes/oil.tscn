@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1eqf5quseroj"]
 
-[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="1_lvncv"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="1_lvncv"]
 [ext_resource type="Script" path="res://scripts/oil.gd" id="1_v8xlx"]
 [ext_resource type="AudioStream" uid="uid://bgmagxwliw8pj" path="res://assests/sfx/bip.wav" id="2_hay6v"]
 
@@ -9,8 +9,7 @@ size = Vector2(7.5, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34rjd"]
 atlas = ExtResource("1_lvncv")
-region = Rect2(97, 97, 16, 16)
-margin = Rect2(1.2, 1, 0, 0)
+region = Rect2(112, 96, 16, 17)
 
 [node name="oil" type="Area2D" groups=["oil_nodes"]]
 collision_layer = 4
@@ -20,14 +19,16 @@ script = ExtResource("1_v8xlx")
 stream = ExtResource("2_hay6v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 0)
+position = Vector2(1.11111, 0.5)
 shape = SubResource("RectangleShape2D_u7k45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0.0555573, 0)
 texture = SubResource("AtlasTexture_34rjd")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.5, 0.222223)
 stream = ExtResource("2_hay6v")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

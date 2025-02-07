@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bh45tcuc46b7e" path="res://assests/pipe/pipe_left.png" id="4_yhxkh"]
 [ext_resource type="Texture2D" uid="uid://df3ikjhfo4se4" path="res://assests/pipe/pipe_right.png" id="5_x6owm"]
 [ext_resource type="Texture2D" uid="uid://bpi8dcjfdqxv" path="res://assests/pipe/pipe_up.png" id="6_6elfa"]
-[ext_resource type="Texture2D" uid="uid://cle7wps5qghya" path="res://assests/spritesheet_pipe_body.png" id="7_h678h"]
+[ext_resource type="Texture2D" uid="uid://cle7wps5qghya" path="res://assests/spritesheetss/spritesheet_pipe_body.png" id="7_h678h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04mht"]
 radius = 7.0

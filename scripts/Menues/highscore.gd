@@ -17,7 +17,7 @@ extends Control
 
 const FONT_SIZE = 22
 const LINE_SPACING = -4
-const c64_font = preload("res://assests/Commodore Pixelized v1.2.ttf")
+const c64_font = preload("res://assests/fonts/Commodore Pixelized v1.2.ttf")
 
 
 func _ready():

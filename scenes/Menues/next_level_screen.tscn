@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dy6fr73awtg0b"]
 
 [ext_resource type="Script" path="res://scripts/Menues/next_level_screen.gd" id="1_hx5yl"]
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_8oydg"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="2_8oydg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_85bcp"]
 line_spacing = 13.0

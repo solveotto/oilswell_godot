@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://5h4elroqtwpx"
-path="res://.godot/imported/Commodore Pixelized v1.2.ttf-ad1fd4c9f84997c8a31471f6eb6ad29d.fontdata"
+path="res://.godot/imported/Commodore Pixelized v1.2.ttf-263e264609b4e0b0ca9c05d1b1f33c6f.fontdata"
 
 [deps]
 
-source_file="res://assests/Commodore Pixelized v1.2.ttf"
-dest_files=["res://.godot/imported/Commodore Pixelized v1.2.ttf-ad1fd4c9f84997c8a31471f6eb6ad29d.fontdata"]
+source_file="res://assests/fonts/Commodore Pixelized v1.2.ttf"
+dest_files=["res://.godot/imported/Commodore Pixelized v1.2.ttf-263e264609b4e0b0ca9c05d1b1f33c6f.fontdata"]
 
 [params]
 

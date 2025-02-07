@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfqcnknmmgujl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_a1ehn"]
-[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_0ixtx"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="2_0ixtx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxxcs"]
 atlas = ExtResource("2_0ixtx")
-region = Rect2(160, 96, 16, 16)
+region = Rect2(0, 112, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
 size = Vector2(8.32602, 8.92237)

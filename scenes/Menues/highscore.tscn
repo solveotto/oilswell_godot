@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cm65njxqu4o6"]
 
-[ext_resource type="Texture2D" uid="uid://dunap0owi8d3t" path="res://assests/oilswell_highscore.png" id="1_c0w8l"]
+[ext_resource type="Texture2D" uid="uid://dunap0owi8d3t" path="res://assests/img/oilswell_highscore.png" id="1_c0w8l"]
 [ext_resource type="Script" path="res://scripts/Menues/highscore.gd" id="1_ucm55"]
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="2_5eln3"]
-[ext_resource type="LabelSettings" uid="uid://dh2lqvo8v8ulj" path="res://assests/label_settings.tres" id="2_mwvku"]
-[ext_resource type="Theme" uid="uid://cleu1u4axevxc" path="res://assests/lable_theme.tres" id="4_8j4s1"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="2_5eln3"]
+[ext_resource type="LabelSettings" uid="uid://dh2lqvo8v8ulj" path="res://assests/settings/label_settings.tres" id="2_mwvku"]
+[ext_resource type="Theme" uid="uid://cleu1u4axevxc" path="res://assests/settings/lable_theme.tres" id="4_8j4s1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qngko"]
 font = ExtResource("2_5eln3")

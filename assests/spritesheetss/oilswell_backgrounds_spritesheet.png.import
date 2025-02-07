@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://el6v3klk5hqa"
-path="res://.godot/imported/oils_well_main_menu.png-046e861e1194a1ea2fefa6a7f93db7ba.ctex"
+uid="uid://b42f4fymt58m0"
+path="res://.godot/imported/oilswell_backgrounds_spritesheet.png-48af5ec72f9943f17be3394a525ecf8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/oils_well_main_menu.png"
-dest_files=["res://.godot/imported/oils_well_main_menu.png-046e861e1194a1ea2fefa6a7f93db7ba.ctex"]
+source_file="res://assests/spritesheetss/oilswell_backgrounds_spritesheet.png"
+dest_files=["res://.godot/imported/oilswell_backgrounds_spritesheet.png-48af5ec72f9943f17be3394a525ecf8d.ctex"]
 
 [params]
 

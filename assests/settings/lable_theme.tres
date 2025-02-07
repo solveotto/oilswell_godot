@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cleu1u4axevxc"]
 
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="1_v2id6"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="1_v2id6"]
 
 [resource]
 default_font = ExtResource("1_v2id6")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckt7ikqnp27io"]
 
 [ext_resource type="Script" path="res://scripts/Menues/main_menu.gd" id="1_qltth"]
-[ext_resource type="Theme" uid="uid://cleu1u4axevxc" path="res://assests/lable_theme.tres" id="2_movqs"]
-[ext_resource type="Texture2D" uid="uid://el6v3klk5hqa" path="res://assests/oils_well_main_menu.png" id="3_2j2xq"]
+[ext_resource type="Theme" uid="uid://cleu1u4axevxc" path="res://assests/settings/lable_theme.tres" id="2_movqs"]
+[ext_resource type="Texture2D" uid="uid://el6v3klk5hqa" path="res://assests/img/oils_well_main_menu.png" id="3_2j2xq"]
 [ext_resource type="Texture2D" uid="uid://c0x1ujwaucnq7" path="res://assests/img/Press_Fire_to_Play.png" id="3_abt1v"]
 [ext_resource type="Texture2D" uid="uid://ef6ujaln78b2" path="res://assests/img/Sierra_online.png" id="5_r4yxx"]
 

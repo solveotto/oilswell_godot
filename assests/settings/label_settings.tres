@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dh2lqvo8v8ulj"]
 
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="1_qpywo"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="1_qpywo"]
 
 [resource]
 font = ExtResource("1_qpywo")

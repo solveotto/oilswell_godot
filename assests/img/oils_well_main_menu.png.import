@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2iya3gw2s1cw"
-path="res://.godot/imported/wall3.png-dc94fba4488aaa7c8746bd4293145335.ctex"
+uid="uid://el6v3klk5hqa"
+path="res://.godot/imported/oils_well_main_menu.png-5de3a5daf353bc5003c89b001cef0851.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/walls/wall3.png"
-dest_files=["res://.godot/imported/wall3.png-dc94fba4488aaa7c8746bd4293145335.ctex"]
+source_file="res://assests/img/oils_well_main_menu.png"
+dest_files=["res://.godot/imported/oils_well_main_menu.png-5de3a5daf353bc5003c89b001cef0851.ctex"]
 
 [params]
 

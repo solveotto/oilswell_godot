@@ -25,10 +25,14 @@ var current_index = 0
 var cycle_time = 0.06  # Change color every 0.1 seconds (adjust as needed)
 var elapsed_time = 0.0
 
+var speed := 100
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameManager.active_cup_bomb = true
 	add_to_group("Enemies")
+	print("Cup Bomb spawned")
 	
 	var random_left_right = randi_range(0,1)
 	var random_row = GameManager.map_rows[randi_range(0, 5)]["y_pos"]
@@ -53,7 +57,7 @@ func _process(delta):
 		current_index = (current_index + 1) % colors.size()
 		modulate = colors[current_index]
 		
-	position = position.move_toward(target_pos, GameManager.monster_speed * delta)
+	position = position.move_toward(target_pos, speed * delta)
 	if position == target_pos:
 		remove_from_group("Enemies")
 		queue_free()

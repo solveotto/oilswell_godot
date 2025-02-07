@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://g0rq8muv4hhq"]
 
-[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/Commodore Pixelized v1.2.ttf" id="1_s2wkm"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="1_s2wkm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j6cvv"]
 line_spacing = 10.0

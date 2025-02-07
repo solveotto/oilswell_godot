@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://7ckmdhnegsvj"]
 
 [ext_resource type="Script" path="res://scripts/enemy_cup_bomb.gd" id="1_qkm34"]
-[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheet.png" id="2_ehafr"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="2_ehafr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxxcs"]
 atlas = ExtResource("2_ehafr")
-region = Rect2(80, 96, 16, 16)
+region = Rect2(96, 96, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
 size = Vector2(8.32602, 8.28506)

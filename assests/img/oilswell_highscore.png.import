@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b42f4fymt58m0"
-path="res://.godot/imported/oilswell_backgrounds_spritesheet.png-ba6dfc34a6773ef4ec426599652b8509.ctex"
+uid="uid://dunap0owi8d3t"
+path="res://.godot/imported/oilswell_highscore.png-2de01277303b97d3bfb6da932ea09651.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assests/oilswell_backgrounds_spritesheet.png"
-dest_files=["res://.godot/imported/oilswell_backgrounds_spritesheet.png-ba6dfc34a6773ef4ec426599652b8509.ctex"]
+source_file="res://assests/img/oilswell_highscore.png"
+dest_files=["res://.godot/imported/oilswell_highscore.png-2de01277303b97d3bfb6da932ea09651.ctex"]
 
 [params]
 
