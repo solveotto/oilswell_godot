@@ -19,13 +19,14 @@ script = ExtResource("1_v8xlx")
 stream = ExtResource("2_hay6v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.11111, 0.5)
+position = Vector2(8, 8.11111)
 shape = SubResource("RectangleShape2D_u7k45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0.0555573, 0)
 texture = SubResource("AtlasTexture_34rjd")
+centered = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0.5, 0.222223)

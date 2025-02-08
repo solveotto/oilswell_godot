@@ -3,8 +3,7 @@ extends CharacterBody2D
 
 signal pipe_fully_retracted
 
-const START_POS = Vector2(25,12)
-
+var start_pos = Vector2(25,12)
 var tile_size = 16
 var animation_speed = 45
 var rwd_speed = 60
@@ -63,7 +62,8 @@ func _ready():
 	respawn_timer.connect("timeout", Callable(self, "_on_RespawnTimer_timeout"))
 	
 	
-	position.snapped(Vector2(tile_size, tile_size))	
+	position.snapped(Vector2(tile_size, tile_size))
+	start_pos = position / tile_size
 	set_head_dir(Vector2.DOWN)
 	
 	# Set the initial color
@@ -115,6 +115,8 @@ func _process(_delta):
 
 	if reversing == false:
 		retract_org.stop()
+		
+	print(position / tile_size)
 
 func _get_user_input():
 	if Input.is_action_pressed("move_down"):
@@ -254,7 +256,7 @@ func draw_segments():
 				previous_segment = segment
 			
 			# Draws a downwards segment on the first position
-			elif segment == START_POS:
+			elif segment == start_pos:
 				pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_VERTICAL)
 			
 			if previous_segment and next_segment:
