@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ouubekcwew88"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_imhq0"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="2_tar6y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxxcs"]
+atlas = ExtResource("2_tar6y")
+region = Rect2(96, 112, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
+size = Vector2(8.33916, 7.01043)
+
+[node name="enemy_9" type="Area2D" groups=["Enemies"]]
+z_index = 2
+collision_layer = 32
+collision_mask = 17
+script = ExtResource("1_imhq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.68274, 1)
+texture = SubResource("AtlasTexture_xxxcs")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13.5, 9.5)
+scale = Vector2(2.75807, 1.56909)
+shape = SubResource("RectangleShape2D_p1r28")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.062
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

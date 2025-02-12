@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy6fr73awtg0b"]
+
+[ext_resource type="Script" path="res://scripts/Menues/next_level_screen.gd" id="1_hx5yl"]
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="2_8oydg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_85bcp"]
+line_spacing = 13.0
+font = ExtResource("2_8oydg")
+font_size = 45
+font_color = Color(0.333333, 0.45098, 0.831373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8ds8"]
+font = ExtResource("2_8oydg")
+font_size = 45
+font_color = Color(0, 0.752941, 0.117647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3smxr"]
+font = ExtResource("2_8oydg")
+font_size = 45
+font_color = Color(1, 1, 0.0313726, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2alfi"]
+font = ExtResource("2_8oydg")
+font_size = 45
+font_color = Color(1, 1, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_hx5yl")
+
+[node name="Get" type="Label" parent="."]
+offset_top = 64.0
+offset_right = 816.0
+offset_bottom = 128.0
+text = "GET"
+label_settings = SubResource("LabelSettings_85bcp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ready" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 816.0
+offset_bottom = 173.0
+text = "READY"
+label_settings = SubResource("LabelSettings_x8ds8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 232.0
+offset_right = 808.0
+offset_bottom = 277.0
+text = "LEVEL"
+label_settings = SubResource("LabelSettings_3smxr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Levelnumber" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 288.0
+offset_right = 816.0
+offset_bottom = 333.0
+text = "#"
+label_settings = SubResource("LabelSettings_2alfi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

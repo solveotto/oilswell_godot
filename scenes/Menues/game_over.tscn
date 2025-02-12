@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://g0rq8muv4hhq"]
+
+[ext_resource type="FontFile" uid="uid://5h4elroqtwpx" path="res://assests/fonts/Commodore Pixelized v1.2.ttf" id="1_s2wkm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j6cvv"]
+line_spacing = 10.0
+font = ExtResource("1_s2wkm")
+font_size = 45
+font_color = Color(1, 1, 0, 1)
+outline_size = 2
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Game Over!" type="Label" parent="."]
+offset_top = 208.0
+offset_right = 816.0
+offset_bottom = 253.0
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_j6cvv")
+horizontal_alignment = 1
+vertical_alignment = 1
