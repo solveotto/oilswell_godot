@@ -93,9 +93,6 @@ func _connect_enemy(enemy):
 
 
 func _process(_delta):
-	#print(GameManager.active_cup_bomb)
-	
-	
 	# Movement Logic
 	if !respawning:
 		_get_user_input()
@@ -104,7 +101,6 @@ func _process(_delta):
 		if reversing:
 			retract_pipe()
 		else:
-			
 			return
 	else:
 		if reversing:
@@ -116,7 +112,6 @@ func _process(_delta):
 	if reversing == false:
 		retract_org.stop()
 		
-	print(position / tile_size)
 
 func _get_user_input():
 	if Input.is_action_pressed("move_down"):
@@ -296,6 +291,7 @@ func _on_death():
 	cur_dir = Vector2.ZERO
 	nxt_dir = Vector2.ZERO
 	respawning = true
+	reversing =  false
 	collision_shape_2d.disabled = true
 	pipe.stop()
 	GameManager.player_alive = false

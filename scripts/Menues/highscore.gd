@@ -25,13 +25,14 @@ func _ready():
 	#clear_highscore_file()
 	_display_highscore()
 	_focus_input_if_needed()
-	print(GameManager.new_highscore_index, GameManager.new_highscore)
-	pass
+	
 
 
 func _input(event):
 	if event.is_action_pressed("stop_reverse") or event.is_action_pressed("quit"):
+		GameManager.unload_level()
 		get_tree().change_scene_to_packed(GameManager.MAIN)
+		print("QUIT HIGHSCORE")
 		continue_label.hide()
 
 

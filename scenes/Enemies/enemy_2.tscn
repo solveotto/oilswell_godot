@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtby6dcbqxmt3"]
+[gd_scene load_steps=5 format=3 uid="uid://ch4d4yadkg2jd"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_5jeor"]
-[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="2_n2jjx"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_myxvi"]
+[ext_resource type="Texture2D" uid="uid://cw640silkjhim" path="res://assests/spritesheetss/main_spritesheet.png" id="2_narxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxxcs"]
-atlas = ExtResource("2_n2jjx")
-region = Rect2(144, 112, 16, 16)
+atlas = ExtResource("2_narxn")
+region = Rect2(160, 96, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
-size = Vector2(4.61951, 5.89514)
+size = Vector2(7.06359, 8.28506)
 
-[node name="enemy_12" type="Area2D" groups=["Enemies"]]
+[node name="enemy_2" type="Area2D" groups=["Enemies"]]
 z_index = 2
 collision_layer = 32
 collision_mask = 17
-script = ExtResource("1_5jeor")
+script = ExtResource("1_myxvi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.3125, 0.949803)
+scale = Vector2(1.375, 0.995031)
 texture = SubResource("AtlasTexture_xxxcs")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10.6295, 9.375)
+position = Vector2(11.2591, 9)
 scale = Vector2(2.75807, 1.56909)
 shape = SubResource("RectangleShape2D_p1r28")
 

@@ -8,65 +8,103 @@ extends Node2D
 @onready var time_stop = $Pickups/TimeStop
 
 
+# Sets active rows on current level
+const MAP_ROWS = [
+	GameManager.MAP_ROWS["row_13"],
+	GameManager.MAP_ROWS["row_16"],
+	GameManager.MAP_ROWS["row_19"],
+	GameManager.MAP_ROWS["row_22"],
+	GameManager.MAP_ROWS["row_25"],
+	GameManager.MAP_ROWS["row_28"],
+]
 
-const ENEMY_1 = preload("res://scenes/Enemies/enemy_1.tscn")
-const ENEMY_3 = preload("res://scenes/Enemies/enemy_3.tscn")
-const ENEMY_5 = preload("res://scenes/Enemies/enemy_5.tscn")
-const ENEMY_6 = preload("res://scenes/Enemies/enemy_6.tscn")
-const ENEMY_8 = preload("res://scenes/Enemies/enemy_8.tscn")
-const ENEMY_12 = preload("res://scenes/Enemies/enemy_12.tscn")
-const ENEMY_13 = preload("res://scenes/Enemies/enemy_13.tscn")
-
-
+var map_column_left = -32
+var map_column_right = 830
 
 func _ready():
 	#GameManager.player = player
 	GameManager.timestop_node = time_stop
 	GameManager.life_icon = $HUD/Life
-
 	GameManager.oil_count = get_tree().get_nodes_in_group("oil_nodes").size()
 	GameManager.score_label = score_label
 	GameManager.score_label.text = str(GameManager.score)
 	
 	
-	# Spawn Monsters. 
-	# Inputs: enemy, start_pos, target_pos, spawn_pos, first_spawn_time, spawn_time
-	# Row 1 Left
-	spawn_monster(ENEMY_8, Vector2(GameManager.map_column_right, GameManager.map_rows[0]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[0]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[0]["y_pos"]),
-					15, 20)
-	# Row 2 Right
-	spawn_monster(ENEMY_12, Vector2(GameManager.map_column_left, GameManager.map_rows[0]["y_pos"]),
-				Vector2(GameManager.map_column_right, GameManager.map_rows[0]["y_pos"]),
-				Vector2(GameManager.map_column_left, GameManager.map_rows[0]["y_pos"]),
-				23, 20)
-	# Row 2 Left
-	spawn_monster(ENEMY_3, Vector2(700, GameManager.map_rows[1]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[1]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[1]["y_pos"]),
-					0, 35)
-	# Row 3 Right
-	spawn_monster(ENEMY_5, Vector2(300, GameManager.map_rows[2]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[2]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[2]["y_pos"]),
-					0, 15)
-	# Row 4 Right
-	spawn_monster(ENEMY_6, Vector2(80, GameManager.map_rows[3]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[3]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[3]["y_pos"]),
-					0, 18)
-	# Row 5 Right
-	spawn_monster(ENEMY_13, Vector2(500, GameManager.map_rows[4]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[4]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[4]["y_pos"]),
-					0, 3)
-	# Row 6 Left
-	spawn_monster(ENEMY_1, Vector2(GameManager.map_column_left, GameManager.map_rows[5]["y_pos"]),
-					Vector2(GameManager.map_column_right, GameManager.map_rows[5]["y_pos"]),
-					Vector2(GameManager.map_column_left, GameManager.map_rows[5]["y_pos"]),
-					4, 2)
-					
+	# Start spawning bombs and cups
+	GameManager.enable_cups_and_bombs()
+	
+		# Define enemy spawn data in an array.
+	# Each dictionary holds all the parameters needed to spawn an enemy.
+	var spawn_data = [
+		{
+			"enemy": GameManager.ENEMIES["enemy_8"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
+			"first_spawn_time": 25,
+			"spawn_time": 20
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_12"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
+			"first_spawn_time": 23,
+			"spawn_time": 20
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_3"],
+			"start_pos": Vector2(700, MAP_ROWS[1]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[1]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[1]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 35
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_5"],
+			"start_pos": Vector2(300, MAP_ROWS[2]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[2]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[2]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 15
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_6"],
+			"start_pos": Vector2(80, MAP_ROWS[3]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[3]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[3]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 18
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_13"],
+			"start_pos": Vector2(500, MAP_ROWS[4]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[4]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[4]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 3
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_1"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[5]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[5]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[5]["y_pos"]),
+			"first_spawn_time": 4,
+			"spawn_time": 2
+		}
+	]
+
+	# Loop through the spawn_data array to spawn each enemy.
+	for spawn in spawn_data:
+		spawn_monster(
+			spawn["enemy"],
+			spawn["start_pos"],
+			spawn["target_pos"],
+			spawn["spawn_pos"],
+			spawn["first_spawn_time"],
+			spawn["spawn_time"]
+		)
+
 
 
 func spawn_monster(enemy, start_pos, target_pos, spawn_pos, first_spawn_time, spawn_time):
@@ -76,6 +114,5 @@ func spawn_monster(enemy, start_pos, target_pos, spawn_pos, first_spawn_time, sp
 	instance.spawn_pos = spawn_pos
 	instance.first_spawn_time = first_spawn_time
 	instance.spawn_time = spawn_time
+	
 	add_child(instance) 
-	
-	

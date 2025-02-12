@@ -30,19 +30,20 @@ var speed := 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("MSG FROM _ready: SPAWNED CUP OR BOMB.")
 	GameManager.active_cup_bomb = true
 	add_to_group("Enemies")
-	print("Cup Bomb spawned")
 	
 	var random_left_right = randi_range(0,1)
-	var random_row = GameManager.map_rows[randi_range(0, 5)]["y_pos"]
+	var random_row = get_tree().current_scene.MAP_ROWS[randi_range(0, 5)]["y_pos"]
+	
 	
 	if random_left_right == 0:
-		start_pos = Vector2(GameManager.map_column_left, random_row)
-		target_pos = Vector2(GameManager.map_column_right, random_row)
+		start_pos = Vector2(GameManager.MAP_COLUMN_LEFT, random_row)
+		target_pos = Vector2(GameManager.MAP_COLUMN_RIGHT, random_row)
 	else:
-		start_pos = Vector2(GameManager.map_column_right, random_row)
-		target_pos = Vector2(GameManager.map_column_left, random_row)
+		start_pos = Vector2(GameManager.MAP_COLUMN_RIGHT, random_row)
+		target_pos = Vector2(GameManager.MAP_COLUMN_LEFT, random_row)
 	
 	position = start_pos
 

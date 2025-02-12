@@ -54,7 +54,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	
 
 	if collision_handled:
 		return  # Ignore extra collisions
@@ -76,7 +75,6 @@ func _on_body_entered(body):
 	# Reset collision handling after a short delay
 	await get_tree().create_timer(0.1).timeout
 	collision_handled = false
-
 
 
 func _on_SpawnTimer_timeout():

@@ -2,30 +2,70 @@ extends Node2D
 
 
 # Preloads
+const LIFE_TEXTURE: Texture2D = preload("res://assests/pipe/pipe_right.png")
 const MAIN = preload("res://scenes/Menues/main.tscn")
 const NEXT_LEVEL_SCREEN = preload("res://scenes/Menues/next_level_screen.tscn")
 const GAME_OVER = preload("res://scenes/Menues/game_over.tscn")
 const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
-
-# Cups and bombs
 const CUP_OR_BOMB = [
 	preload("res://scenes/Enemies/enemy_cup.tscn"),
 	preload("res://scenes/Enemies/enemy_bomb.tscn")]
-var cup_bomb_active = false
+
+
+const MAP_COLUMN_LEFT = -32
+const MAP_COLUMN_RIGHT = 830
+
+# Map coordinates
+const MAP_ROWS = {
+	"row_13": {"y_pos": 208, "value": 20},
+	"row_14": {"y_pos": 224, "value": 20},
+	"row_15": {"y_pos": 240, "value": 30},
+	"row_16": {"y_pos": 256, "value": 30},
+	"row_17": {"y_pos": 272, "value": 40},
+	"row_18": {"y_pos": 288, "value": 40},
+	"row_19": {"y_pos": 304, "value": 50},
+	"row_20": {"y_pos": 320, "value": 50},
+	"row_21": {"y_pos": 336, "value": 60},
+	"row_22": {"y_pos": 352, "value": 60},
+	"row_23": {"y_pos": 368, "value": 70},
+	"row_24": {"y_pos": 384, "value": 70},
+	"row_25": {"y_pos": 400, "value": 80},
+	"row_26": {"y_pos": 416, "value": 80},
+	"row_27": {"y_pos": 432, "value": 90},
+	"row_28": {"y_pos": 448, "value": 90},
+	"row_29": {"y_pos": 464, "value": 100}
+}
+
+# Preloads enemies
+const ENEMIES = {
+	"enemy_1": preload("res://scenes/Enemies/enemy_1.tscn"),
+	"enemy_2": preload("res://scenes/Enemies/enemy_2.tscn"),
+	"enemy_3": preload("res://scenes/Enemies/enemy_3.tscn"),
+	"enemy_4": preload("res://scenes/Enemies/enemy_4.tscn"),
+	"enemy_5": preload("res://scenes/Enemies/enemy_5.tscn"),
+	"enemy_6": preload("res://scenes/Enemies/enemy_6.tscn"),
+	"enemy_7": preload("res://scenes/Enemies/enemy_7.tscn"),
+	"enemy_8": preload("res://scenes/Enemies/enemy_8.tscn"),
+	"enemy_9": preload("res://scenes/Enemies/enemy_9.tscn"),
+	"enemy_10": preload("res://scenes/Enemies/enemy_10.tscn"),
+	"enemy_11": preload("res://scenes/Enemies/enemy_11.tscn"),
+	"enemy_12": preload("res://scenes/Enemies/enemy_12.tscn"),
+	"enemy_13": preload("res://scenes/Enemies/enemy_13.tscn")
+}
 
 
 @onready var backgorund = $Backgorund
+@onready var tile_size = 16
 
 # User Interface
 @onready var level_instance : PackedScene
-@onready var LIFE_TEXTURE: Texture2D = preload("res://assests/pipe/pipe_right.png")
 @onready var score_label: Label 
 
 
 # Game Stats
 @onready var player_alive := true
 @onready var level_counter := 1
-@onready var life_count := 3
+@onready var life_count := 1
 @onready var extra_lives_ctr := 0
 @onready var oil_count := 0
 
@@ -36,51 +76,33 @@ var cup_bomb_active = false
 @onready var highscore_max_entries := 10
 
 @onready var player = null
-
-
 @onready var timestop_node
 @onready var life_icon
 
-
-# Map coordinates
-@onready var map_rows = [
-	{"y_pos": 214, "value": 20},
-	{"y_pos": 264, "value": 40},
-	{"y_pos": 312, "value": 50},
-	{"y_pos": 360, "value": 60},
-	{"y_pos": 408, "value": 70},
-	{"y_pos": 456, "value": 80}
-]
-
-@onready var map_column_left = -16
-@onready var map_column_right = 830
-
-
-# Monster Data
-@onready var monster_speed = 100
-@onready var timestop = false
+# Enemies
+var monster_speed = 100
+var timestop = false
 var active_cup_bomb = null
 var cups_and_bombs_spawning_enabled = false
 
 
-func _ready():
-	print("player node", player)
-	enable_spawning()
-	
 
+func _ready():
+	enable_cups_and_bombs()
+ 
 
 # LEVEL HANDLING
 func load_level(level_name : String):
 	unload_level()
 	var level_path := "res://scenes/Levels/%s.tscn" % level_name
 	
+	
 	# Level splash screen
 	get_tree().change_scene_to_packed(NEXT_LEVEL_SCREEN)
 	MusicManager.next_level_sound.play()
 	await get_tree().create_timer(4).timeout
-	
-	# Check if highscore reached
-	
+
+
 	if (level_path):
 		get_tree().change_scene_to_file(level_path)
 
@@ -89,9 +111,10 @@ func unload_level():
 	if (is_instance_valid(level_instance)):
 		level_instance.queue_free()
 	level_instance = null
+	disable_cups_and_bombs()
 
 
-
+# Life and GameOver
 func loose_life():
 	life_count -= 1
 	
@@ -128,6 +151,8 @@ func extra_life_mangaer(score_to_add: int):
 		extra_lives_ctr = 0
 		life_icon.update_lives()
 	
+
+
 # SCORE HANDELING
 func add_oil_point():
 	score += 10
@@ -137,13 +162,12 @@ func add_oil_point():
 	extra_life_mangaer(10)
 	check_level_end()
 	
-	
 
 func add_monster_points(name):
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		if enemy.name == name:
-			for row in map_rows:
+			for row in MAP_ROWS.values():
 				if row["y_pos"] == enemy.start_pos.y:
 					score += row["value"]
 					extra_life_mangaer(row["value"])
@@ -157,6 +181,7 @@ func add_cup_points():
 	extra_life_mangaer(1000)
 	score_label.text = str(score)
 	
+
 
 # SIGNALS
 func connect_signal_to_function(_node, _signal, _func):
@@ -259,7 +284,6 @@ func sort_ascending(a, b):
 	return false
 
 
-
 func clear_highscore_file():
 	var file = FileAccess.open("user://save_game.dat", FileAccess.ModeFlags.WRITE)
 	if file:
@@ -271,30 +295,31 @@ func clear_highscore_file():
 
 
 
+
+
 # Spawn Cups and Bombs randomly
-func enable_spawning():
+func enable_cups_and_bombs():
 	cups_and_bombs_spawning_enabled = true
-	schedule_next_spawn()
+	schedule_next_cup_or_bomb_spawn()
 
 
-func disable_spawning():
+func disable_cups_and_bombs():
 	cups_and_bombs_spawning_enabled = false
 
 
-func schedule_next_spawn():
+func schedule_next_cup_or_bomb_spawn():
 	if not cups_and_bombs_spawning_enabled:
 		return
-	get_tree().create_timer(randi_range(8, 25)).timeout.connect(try_spawn_monster)
+	get_tree().create_timer(randi_range(15, 45)).timeout.connect(try_spawn_cup_or_bomb)
 
 
-func try_spawn_monster():
+func try_spawn_cup_or_bomb():
 	if not cups_and_bombs_spawning_enabled or active_cup_bomb == true:
-		schedule_next_spawn()
+		schedule_next_cup_or_bomb_spawn()
 		return
-	
 	GameManager.active_cup_bomb = true
 	spawn_cups_and_bombs()
-	schedule_next_spawn()
+	schedule_next_cup_or_bomb_spawn()
 
 
 func spawn_cups_and_bombs():

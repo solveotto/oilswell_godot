@@ -7,8 +7,8 @@
 atlas = ExtResource("2_cs5lh")
 region = Rect2(128, 96, 16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
-size = Vector2(8.32602, 8.28506)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mguod"]
+radius = 2.96977
 
 [node name="enemy_bomb" type="Area2D" groups=["Enemies"]]
 z_index = 2
@@ -17,13 +17,14 @@ script = ExtResource("1_27oil")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.68274, 1.21773)
+scale = Vector2(1.375, 0.995031)
 texture = SubResource("AtlasTexture_xxxcs")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.518144, 2.5)
+position = Vector2(11, 8)
 scale = Vector2(2.75807, 1.56909)
-shape = SubResource("RectangleShape2D_p1r28")
+shape = SubResource("CircleShape2D_mguod")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.062

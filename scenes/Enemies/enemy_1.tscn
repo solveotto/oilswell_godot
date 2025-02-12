@@ -8,7 +8,7 @@ atlas = ExtResource("2_q1yq4")
 region = Rect2(144, 96, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1r28"]
-size = Vector2(8.32602, 8.28506)
+size = Vector2(7.06359, 8.28506)
 
 [node name="enemy_1" type="Area2D" groups=["Enemies"]]
 z_index = 2
@@ -18,11 +18,12 @@ script = ExtResource("1_rrlsh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.68274, 1.21773)
+scale = Vector2(1.375, 0.995031)
 texture = SubResource("AtlasTexture_xxxcs")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.518144, 2.5)
+position = Vector2(11.2591, 9)
 scale = Vector2(2.75807, 1.56909)
 shape = SubResource("RectangleShape2D_p1r28")
 
