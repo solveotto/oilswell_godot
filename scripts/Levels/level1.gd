@@ -41,7 +41,7 @@ func _ready():
 			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
-			"first_spawn_time": 25,
+			"first_spawn_time": 0,
 			"spawn_time": 20
 		},
 		{

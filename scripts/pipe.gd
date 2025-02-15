@@ -32,7 +32,7 @@ var oil_position_data = []
 
 @onready var move_snd = $sfx/move_snd	
 @onready var movement = $sfx/Movement
-@onready var retract_org = $sfx/RetractOrg
+@onready var reversing_sfx = $sfx/RetractOrg
 
 
 #Load current tilemap
@@ -48,6 +48,42 @@ var colors = [
 	Color(1, 0, 1), # Magenta
 	Color(0, 1, 1)  # Cyan
 ]
+
+
+
+func _connect_enemy_signals():
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		_connect_enemy(enemy)
+
+
+# handles dynamically spawned enemies
+func _on_node_added(node):
+	if node.is_in_group("Enemies"):
+		_connect_enemy(node)
+
+
+func _connect_enemy(enemy):
+	if enemy.has_signal("kill") and not enemy.is_connected("kill", Callable(self, "_on_death")):
+		enemy.connect("kill", Callable(self, "_on_death"))
+
+
+func _get_user_input():
+	if Input.is_action_pressed("move_down"):
+		nxt_dir = Vector2.DOWN
+	elif Input.is_action_pressed("move_up"):
+		nxt_dir = Vector2.UP
+	elif Input.is_action_pressed("move_left"):
+		nxt_dir = Vector2.LEFT
+	elif Input.is_action_pressed("move_right"):
+		nxt_dir = Vector2.RIGHT
+	elif Input.is_action_just_pressed("stop_reverse"):
+		nxt_dir = Vector2.ZERO
+		cur_dir = Vector2.ZERO
+		reversing = true
+	elif Input.is_action_just_released("stop_reverse"):
+		reversing = false
+
 
 
 func _ready():
@@ -69,27 +105,8 @@ func _ready():
 	# Set the initial color
 	pb_tilemap.modulate = colors[pipe_segments_color_index]
 	
-	
-	
 	pipe.frame_changed.connect(_on_frame_changed)
-	
 
-
-func _connect_enemy_signals():
-	var enemies = get_tree().get_nodes_in_group("Enemies")
-	for enemy in enemies:
-		_connect_enemy(enemy)
-
-
-# handles dynamically spawned enemies
-func _on_node_added(node):
-	if node.is_in_group("Enemies"):
-		_connect_enemy(node)
-
-
-func _connect_enemy(enemy):
-	if enemy.has_signal("kill") and not enemy.is_connected("kill", Callable(self, "_on_death")):
-		enemy.connect("kill", Callable(self, "_on_death"))
 
 
 func _process(_delta):
@@ -110,60 +127,8 @@ func _process(_delta):
 			
 
 	if reversing == false:
-		retract_org.stop()
-		
-
-func _get_user_input():
-	if Input.is_action_pressed("move_down"):
-		nxt_dir = Vector2.DOWN
-	elif Input.is_action_pressed("move_up"):
-		nxt_dir = Vector2.UP
-	elif Input.is_action_pressed("move_left"):
-		nxt_dir = Vector2.LEFT
-	elif Input.is_action_pressed("move_right"):
-		nxt_dir = Vector2.RIGHT
-	elif Input.is_action_just_pressed("stop_reverse"):
-		nxt_dir = Vector2.ZERO
-		cur_dir = Vector2.ZERO
-		reversing = true
-	elif Input.is_action_just_released("stop_reverse"):
-		reversing = false
-
-
-func retract_pipe():
-	if not retract_org.playing and pipe_segments.size() > 5:
-		retract_org.play()
+		reversing_sfx.stop()
 	
-	
-	if pipe_segments.size() > 0:
-			var head_dir: Vector2 
-			
-			# Stops animation when reversing
-			pipe.stop()
-			
-			# Sets the head direction
-			if pipe_segments.size() != 1:
-				head_dir = pipe_segments[-1] - pipe_segments[-2]
-			else:
-				head_dir = position/tile_size - pipe_segments[-1]
-			if head_dir != Vector2(0,0):
-				set_head_dir(Vector2(head_dir))
-			
-			var rwd_head_tween = create_tween()
-			var last_item = pipe_segments.pop_back()
-			pb_tilemap.set_cell(last_item, -1)
-			rwd_head_tween.tween_property(self, "position", last_item * tile_size, 1.0/rwd_speed).set_trans(Tween.TRANS_SINE)
-			moving = true
-			await rwd_head_tween.finished
-			moving = false
-
-		
-	elif pipe_segments.size() == 0:
-		reversing = false  # Stop reversing when all segments are visited
-		add_segment()
-		emit_signal("pipe_fully_retracted")
-	return
-
 
 func move_head() -> void:
 	# Create and force update of ray in current direction
@@ -197,6 +162,41 @@ func move_head() -> void:
 	draw_segments()
 
 
+func retract_pipe():
+	if not reversing_sfx.playing and pipe_segments.size() > 5:
+		reversing_sfx.play()
+	
+	
+	if pipe_segments.size() > 0:
+			var head_dir: Vector2 
+			
+			# Stops animation when reversing
+			pipe.stop()
+			
+			# Sets the head direction
+			if pipe_segments.size() != 1:
+				head_dir = pipe_segments[-1] - pipe_segments[-2]
+			else:
+				head_dir = position/tile_size - pipe_segments[-1]
+			if head_dir != Vector2(0,0):
+				set_head_dir(Vector2(head_dir))
+			
+			var rwd_head_tween = create_tween()
+			var last_item = pipe_segments.pop_back()
+			pb_tilemap.set_cell(last_item, -1)
+			rwd_head_tween.tween_property(self, "position", last_item * tile_size, 1.0/rwd_speed).set_trans(Tween.TRANS_SINE)
+			moving = true
+			await rwd_head_tween.finished
+			moving = false
+
+		
+	elif pipe_segments.size() == 0:
+		reversing = false  # Stop reversing when all segments are visited
+		add_segment()
+		emit_signal("pipe_fully_retracted")
+	return
+
+
 func set_head_dir(dir):
 	if dir == Vector2.ZERO:
 		pipe.stop()
@@ -212,11 +212,38 @@ func set_head_dir(dir):
 
 func add_segment():
 	var tile_pos = position / tile_size
-	# Ensure the position is added only when not reversing
+	# Adds new segment, if position not occupied
 	if tile_pos not in pipe_segments:
 		pipe_segments.append(tile_pos)
+	
+	# Checks if pipe_segments is continous and adds segment if missing
+	var filled_points = []
+	for i in range(pipe_segments.size() - 1):
+		var start = pipe_segments[i]
+		var end = pipe_segments[i + 1]
+		filled_points.append(start)
+		
+		# Step difference between points
+		var x_diff = end.x - start.x
+		var y_diff = end.y - start.y
+		
+		while abs(x_diff) > 1 or abs(y_diff) > 1:
+			# Move one step at a time
+			if x_diff != 0:
+				start.x += sign(x_diff)
+			if y_diff != 0:
+				start.y += sign(y_diff)
+			
+			filled_points.append(Vector2(start.x, start.y))  # Create a new Vector2
+			
+			x_diff = end.x - start.x
+			y_diff = end.y - start.y
+	filled_points.append(pipe_segments[-1])
+	
+	# Replaces original array with new one
+	pipe_segments = filled_points
 
-#
+
 func draw_segments():
 	
 	# Pipebody tilemap ID ID
@@ -237,6 +264,8 @@ func draw_segments():
 			var previous_segment = null
 			var next_segment = null
 			
+
+			
 			# Skips previous or next segments if out of range
 			if segment_index > 0:
 				previous_segment = pipe_segments[segment_index - 1] - segment
@@ -248,12 +277,20 @@ func draw_segments():
 	
 			# Skips to draw the segment if its on top of cur_pos
 			if segment == pipe_segments[-1]:
-				previous_segment = segment
+				previous_segment = segment			
 			
 			# Draws a downwards segment on the first position
 			elif segment == start_pos:
 				pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_VERTICAL)
-			
+
+
+
+			# Check if pipe is continous and adds segment if not
+			if pipe_segments[segment_index -1] - pipe_segments[segment_index -1] != Vector2(0,0):
+				print("MISSING PIPE ADDED!!!")
+				pipe_segments.insert(segment_index -1, pipe_segments[segment_index -1] + (pipe_segments[segment_index -1] - pipe_segments[segment_index -1]))
+
+
 			if previous_segment and next_segment:
 				# Vertical movmentz
 				if previous_segment.x == next_segment.x:
@@ -276,25 +313,23 @@ func draw_segments():
 					# up/left or right/down
 					if previous_segment.y == 1 and next_segment.x == -1 or next_segment.y == 1 and previous_segment.x == -1:
 						pb_tilemap.set_cell(segment, PB_TILEMAP_ID, TILE_UP_LEFT_RIGHT_DOWN)
-				
-				
-			### DEBUG ####
-			#print("Position: ", position / tile_size, " - ",
-			  #"Previous segment: ", previous_segment, " - ",
-			  #"Current Segment: ", segment, " - ",
-			  #"Next Segment: ", next_segment)
-			
-			#print(pipe_segments)
+
 
 
 func _on_death():
 	cur_dir = Vector2.ZERO
 	nxt_dir = Vector2.ZERO
 	respawning = true
-	reversing =  false
 	collision_shape_2d.disabled = true
 	pipe.stop()
-	GameManager.player_alive = false
+	
+	#Stops reversing if killed
+	reversing =  false
+	reversing_sfx.stop()
+	
+	# Play death sound
+	
+	#GameManager.player_alive = false
 	
 	var colors = [Color.RED, Color.GREEN, Color(1, 1, 1, 0), Color.BLUE, Color.WHITE,  Color(1, 1, 1, 0), Color.YELLOW, ]
 	
@@ -313,18 +348,12 @@ func _on_death():
 		
 		# Restore color
 		pipe_body.modulate =  Color.YELLOW
-		
-		#await get_tree().create_timer(0.1).timeout
-	#respawning = false
+
 	lose_life()
 	reversing = true
-	
-	#respawn_timer.start()
-	#respawning = false
-	
 
 func _on_RespawnTimer_timeout():
-	#reversing = false
+	reversing = true
 	respawning = false
 	collision_shape_2d.disabled = false
 

@@ -37,74 +37,107 @@ func _ready():
 	# Each dictionary holds all the parameters needed to spawn an enemy.
 	var spawn_data = [
 		# Enemies on screen when level starts
-		
-		
-		
-		
+		{
+			"enemy": GameManager.ENEMIES["enemy_7"],
+			"start_pos": Vector2(14 * GameManager.tile_size, MAP_ROWS[5]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[5]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[5]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 20
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_3"],
+			"start_pos": Vector2(5 * GameManager.tile_size, MAP_ROWS[3]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[3]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[3]["y_pos"]),
+			"first_spawn_time": 0,
+			"spawn_time": 22
+		},
+		# Enemies that spawn after that
 		{
 			"enemy": GameManager.ENEMIES["enemy_8"],
 			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
-			"first_spawn_time": 15,
-			"spawn_time": 20
+			"first_spawn_time":6,
+			"spawn_time": 25
 		},
 		{
 			"enemy": GameManager.ENEMIES["enemy_12"],
 			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[0]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[0]["y_pos"]),
-			"first_spawn_time": 13,
-			"spawn_time": 20
+			"first_spawn_time":16,
+			"spawn_time": 25
 		},
 		{
 			"enemy": GameManager.ENEMIES["enemy_3"],
-			"start_pos": Vector2(700, MAP_ROWS[1]["y_pos"]),
+			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[1]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[1]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[1]["y_pos"]),
-			"first_spawn_time": 0,
-			"spawn_time": 35
+			"first_spawn_time": 6,
+			"spawn_time": 20
 		},
 		{
 			"enemy": GameManager.ENEMIES["enemy_9"],
-			"start_pos": Vector2(700, MAP_ROWS[1]["y_pos"]),
-			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[1]["y_pos"]),
-			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[1]["y_pos"]),
-			"first_spawn_time": 0,
-			"spawn_time": 35
+			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[1]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[1]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[1]["y_pos"]),
+			"first_spawn_time": 13,
+			"spawn_time": 14
 		},
 		{
-			"enemy": GameManager.ENEMIES["enemy_5"],
-			"start_pos": Vector2(300, MAP_ROWS[2]["y_pos"]),
-			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[2]["y_pos"]),
-			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[2]["y_pos"]),
-			"first_spawn_time": 0,
-			"spawn_time": 15
-		},
-		{
-			"enemy": GameManager.ENEMIES["enemy_6"],
-			"start_pos": Vector2(80, MAP_ROWS[3]["y_pos"]),
+			"enemy": GameManager.ENEMIES["enemy_11"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[3]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[3]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[3]["y_pos"]),
-			"first_spawn_time": 0,
+			"first_spawn_time": 12,
+			"spawn_time": 11
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_4"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[4]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[4]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[4]["y_pos"]),
+			"first_spawn_time": 5,
 			"spawn_time": 18
 		},
 		{
-			"enemy": GameManager.ENEMIES["enemy_13"],
-			"start_pos": Vector2(500, MAP_ROWS[4]["y_pos"]),
+			"enemy": GameManager.ENEMIES["enemy_4"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[4]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[4]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[4]["y_pos"]),
-			"first_spawn_time": 0,
-			"spawn_time": 3
+			"first_spawn_time": 5,
+			"spawn_time": 12
 		},
 		{
-			"enemy": GameManager.ENEMIES["enemy_1"],
+			"enemy": GameManager.ENEMIES["enemy_10"],
 			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[5]["y_pos"]),
 			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[5]["y_pos"]),
 			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[5]["y_pos"]),
 			"first_spawn_time": 4,
-			"spawn_time": 2
-		}
+			"spawn_time": 20
+		},
+
+
+
+		{
+			"enemy": GameManager.ENEMIES["enemy_1"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[6]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[6]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[6]["y_pos"]),
+			"first_spawn_time": 11,
+			"spawn_time": 7
+		},
+		{
+			"enemy": GameManager.ENEMIES["enemy_3"],
+			"start_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[6]["y_pos"]),
+			"target_pos": Vector2(GameManager.MAP_COLUMN_LEFT, MAP_ROWS[6]["y_pos"]),
+			"spawn_pos": Vector2(GameManager.MAP_COLUMN_RIGHT, MAP_ROWS[6]["y_pos"]),
+			"first_spawn_time": 12,
+			"spawn_time": 8
+		},
+
 	]
 
 	# Loop through the spawn_data array to spawn each enemy.

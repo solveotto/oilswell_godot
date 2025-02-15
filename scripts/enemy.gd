@@ -36,7 +36,7 @@ func _ready():
 
 func _process(delta):
 	if moving:
-		position = position.move_toward(target_pos, GameManager.monster_speed * delta)
+		position = position.move_toward(target_pos, GameManager.monster_current_speed * delta)
 		if position == target_pos:
 			if oneshot:
 				queue_free()

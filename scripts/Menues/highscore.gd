@@ -32,7 +32,6 @@ func _input(event):
 	if event.is_action_pressed("stop_reverse") or event.is_action_pressed("quit"):
 		GameManager.unload_level()
 		get_tree().change_scene_to_packed(GameManager.MAIN)
-		print("QUIT HIGHSCORE")
 		continue_label.hide()
 
 
@@ -117,7 +116,6 @@ func _on_text_changed(new_text: String, index: int):
 ### 🔹 Handle Enter Key Press ###
 func _on_text_submitted(new_text: String, index: int):
 	highscores[index]["initials"] = new_text.to_upper()
-	print("Finalized initials:", highscores)
 	GameManager.save_highscores(highscores)  # Save the updated highscores
 	GameManager.new_highscore = false
 	get_tree().reload_current_scene()

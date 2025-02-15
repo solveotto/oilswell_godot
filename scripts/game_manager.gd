@@ -1,5 +1,24 @@
 extends Node2D
 
+"""
+Description:
+In this game Oils Well similar to Pac-Man you steer a drilling head that needs to collect all points in the aisles of the level. 
+During this, enemies move horizontally on each plane. You can "eat them" with the drilling head, 
+but if they touch the pipe the player will lose a life. So if an enemy gets too close to the pipe, 
+you need to quickly climb up again. The difficulty is to choose the paths in dependence of your current position, 
+so that you have enough time to advance to the deeper layers.
+
+Number of levels:
+After finishing the 8 levels they repeat and the enemies get faster each round.
+When you have played through all levels three times it gets as fast as in the first round.
+
+Lives:
+You start with 3 lives.
+Every 10.000 points you get another life.
+
+from https://www.c64-wiki.com/wiki/Oils_Well
+""" 
+
 
 # Preloads
 const LIFE_TEXTURE: Texture2D = preload("res://assests/pipe/pipe_right.png")
@@ -63,12 +82,14 @@ const ENEMIES = {
 
 
 # Game Stats
-@onready var player_alive := true
+@onready var player_alive := true # Maby remove
 @onready var level_counter := 1
-@onready var life_count := 1
+@onready var level_rounds_counter := 1
+@onready var life_count := 3
 @onready var extra_lives_ctr := 0
 @onready var oil_count := 0
 
+# Score
 @onready var score := 0
 @onready var new_highscore := true
 @onready var new_highscore_index: int = 3
@@ -80,7 +101,12 @@ const ENEMIES = {
 @onready var life_icon
 
 # Enemies
-var monster_speed = 100
+var monster_speed_timestop = 10
+var monster_speed_round_1 = 100
+var monster_speed_round_2 = 130
+var monster_speed_round_3 = 150
+var monster_speed_current_level = monster_speed_round_1
+var monster_current_speed = monster_speed_current_level
 var timestop = false
 var active_cup_bomb = null
 var cups_and_bombs_spawning_enabled = false
@@ -121,6 +147,7 @@ func loose_life():
 	# Game over
 	if life_count == 0:
 		level_counter = 1
+		level_rounds_counter = 0
 		life_count = 3
 		add_highscore()
 		
@@ -136,9 +163,29 @@ func loose_life():
 		player_alive = true
 
 
-func check_level_end():
+func level_logic():
 	if oil_count == 0:
-		level_counter += 1
+		# Start level 1 after levl 8 is finished. Speed incease each time.
+		# Repeates the all levels 3 times then speed is set to original speed.
+		if level_counter == 2: # The last level
+			if level_rounds_counter == 1:
+				monster_speed_current_level = monster_speed_round_2
+				level_rounds_counter += 1
+			elif level_rounds_counter == 2:
+				monster_speed_current_level = monster_speed_round_3
+				level_rounds_counter += 1
+			else: # Resets speed after three rounds
+				monster_speed_current_level = monster_speed_round_1
+				level_rounds_counter = 1
+			
+			
+			level_counter = 1
+			monster_current_speed = monster_speed_current_level
+			
+		else:		
+			level_counter += 1
+		
+		print("monster_speed_current_level = ", monster_speed_current_level, " level_counter = ", level_counter, " level_rounds_counter = ", level_rounds_counter)
 		var current_level = "Level_%s" % str(level_counter)
 		load_level(current_level)
 
@@ -160,7 +207,7 @@ func add_oil_point():
 	oil_count -= 1
 	
 	extra_life_mangaer(10)
-	check_level_end()
+	level_logic()
 	
 
 func add_monster_points(name):
@@ -189,7 +236,7 @@ func connect_signal_to_function(_node, _signal, _func):
 	_node.connect(_signal, Callable(self, _func))
 
 func _on_time_stop():
-	monster_speed = 10
+	monster_current_speed = monster_speed_timestop
 	timestop = true
 
 	# Create timer
@@ -202,7 +249,7 @@ func _on_time_stop():
 
 
 func _on_timestop_timer_timeout():
-	monster_speed = 100
+	monster_current_speed = monster_speed_current_level
 	timestop = false
 
 
@@ -264,7 +311,6 @@ func add_highscore() -> void:
 
 # Save highscore (score and initials) to a file
 func save_highscores(highscores_data: Array) -> void:
-	print("save_highscore:", highscores_data)
 	var file = FileAccess.open("user://save_game.dat", FileAccess.ModeFlags.WRITE)
 	if file:
 		file.store_string(JSON.stringify(highscores_data))

@@ -32,4 +32,4 @@ func _on_timeout():
 
 func _input(event):
 	if event.is_action_pressed("stop_reverse"):
-		GameManager.load_level("Level_1")
+		GameManager.load_level("Level_%s" % str(GameManager.level_counter))
