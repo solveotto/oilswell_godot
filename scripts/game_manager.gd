@@ -28,8 +28,8 @@ const GAME_OVER = preload("res://scenes/Menues/game_over.tscn")
 const HIGHSCORE = preload("res://scenes/Menues/highscore.tscn")
 const CUP_OR_BOMB = [
 	preload("res://scenes/Enemies/enemy_cup.tscn"),
-	preload("res://scenes/Enemies/enemy_bomb.tscn")]
-
+	preload("res://scenes/Enemies/enemy_bomb.tscn")
+	]
 
 const MAP_COLUMN_LEFT = -32
 const MAP_COLUMN_RIGHT = 830
